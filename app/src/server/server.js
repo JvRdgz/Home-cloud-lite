@@ -15,20 +15,23 @@ const multer = require('multer');
 // fs nos permitira listar y obtener todos los archivos guardados en una carpeta.
 const fs = require('fs');
 
-fs.readdir('../uploads', function (err, files) {
+fs.readdir('../../uploads', function (err, files) {
     if (err) {
         onerror(err);
         return;
     }
     // Aqui deberia de mostrar todos los archivos, mandando esto al frontend
-    console.log(files);
+    else if (files.length == 0)
+        console.log('No existen archivos.')
+    else
+        console.log(files);
 });
 
 // En esta variable se guarda toda la gestion de la subida de archivos al servidor
 let storage = multer.diskStorage({
     destination:(req, file, callback) => {
         // Ruta donde se van a guardar los archivos.
-        callback(null, '../uploads')
+        callback(null, '../../uploads')
     },
     filename:(req, file, callback) => {
         // Aqui se va a crear un nombre para nuestro fichero.
