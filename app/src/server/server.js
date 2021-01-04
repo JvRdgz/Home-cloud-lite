@@ -15,6 +15,8 @@ const multer = require('multer');
 // fs nos permitira listar y obtener todos los archivos guardados en una carpeta.
 const fs = require('fs');
 
+app.use(express.static(__dirname + '/public'));
+
 fs.readdir('../../uploads', function (err, files) {
     if (err) {
         onerror(err);
@@ -47,10 +49,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Nuestro ENDPOINT
-app.get('/', (req, res) => {
-    // Este mensaje hay que mandarselo al frontend
-    return res.send('This is the home page!!!!');
-});
+// app.get('/', (req, res) => {
+//     // Este mensaje hay que mandarselo al frontend
+//     return res.send('This is the home page!!!!');
+// });
 
 app.post('/upload', upload.single('file'), (req, res) => {
     console.log(`Storage location is ${req.hostname}/${req.file.path}`);
