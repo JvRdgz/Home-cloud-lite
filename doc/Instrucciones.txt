@@ -6,7 +6,18 @@
 	- Path
 	- Morgan
 	- fs
-	=> npm i -S express multer path morgan fs
+	- react
+	- react-dom
+
+	=> npm i -S express multer path morgan fs react react-dom
+	3.1º- Como dependencias de desarrollo:
+		- babel-core
+		- babel-preset-react
+		- babel-preset-es2015
+		- babel-loader
+		- webpack
+		- webpack-cli
+		=> npm i babel-core babel-preset-react babel-preset-es2015 babel-loader webpack webpack-cli -D
 
 4º- Creamos una carpeta /upload que es donde se va a guardar el contenido que queramos subir.
 	=> mkdir upload
@@ -14,4 +25,15 @@
 6º- Modificamos el package.json, donde pone "main" y lo cambiamos a server.js en vez de index.js
 7º- Programamos el server.js y procedemos a ejecutarlo => nodemon server.js
 8º- Instalamos postman para probar la api.
+
+10º Pequeño resumen del workspace:
+	- server.js se encarga de ejecutar a traves de express, todo lo que se encuentra
+		en la carpeta public. (lo envia a nuestro cliente).
+	- En la carpeta /public tenemos nuestro archivo index.html, que va a leer el bundle.js que se
+		encuentra dentro de la carpeta /js. Este bundle es la aplicacion de React.
+	- Para generar nuestro proyecto React, en la carpeta /src contendra nuestro archivo index.jsx que
+		es el archivo inicial con nuestro componente. Para transformar este, vamos a tener nuestro
+		archivo de configuracion de webpack, que contiene la config del proyecto, y se encargara
+		de convertir nuestro index.jsx a un js que se encuentre en la carpete /js
+
 9º- Sincronizando repo heroku con repo github
