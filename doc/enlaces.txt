@@ -1,4 +1,7 @@
 COMANDOS PARA EL DOCKERFILE
+Instrucciones: 
+https://www.hostinger.es/tutoriales/instalar-node-js-ubuntu/
+
 - Instalacion de Nodejs
 sudo apt remove nodejs
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash

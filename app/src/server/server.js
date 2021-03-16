@@ -54,9 +54,19 @@ app.use(express.urlencoded({extended: true}));
 //     return res.send('This is the home page!!!!');
 // });
 
-app.post('/upload', upload.single('file'), (req, res) => {
+app.post('/upload', (req, res) => {
+    let File = req.files.file
+    File.mv(`./files/${File.name}`, err=> {
+        if (err){
+            return res.status(500).send({ message : err })
+        }
+        return res.status(200).send({ message : 'Archivo ${File.name} guardado en ${req.hostname}/${req.file.path}'})
+    });
+});
+
+/* app.post('/upload', upload.single('file'), (req, res) => {
     console.log(`Storage location is ${req.hostname}/${req.file.path}`);
     return (res.send(req.file));
-});
+}); */
 
 app.listen(PORT, () => console.log(`Server is up on port: ${PORT}`));
