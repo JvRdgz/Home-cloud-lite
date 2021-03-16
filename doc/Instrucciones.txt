@@ -2,6 +2,7 @@
 2º- creo el paquete .json => npm init -y
 3º- Instalamos las siguientes dependencias:
 	- Express
+	- Express-fileupload
 	- Multer
 	- Path
 	- Morgan
@@ -9,7 +10,7 @@
 	- react
 	- react-dom
 
-	=> npm i -S express multer path morgan fs react react-dom
+	=> npm i -S express express-fileupload multer path morgan fs react react-dom
 	3.1º- Como dependencias de desarrollo:
 		- babel-core
 		- babel-preset-react
