@@ -48,6 +48,8 @@ RUN source ~/.profile
 ############### INSTALACION DE NODE Y DEPENDENCIAS ###############
 ##################################################################
 
+# En caso de que npm no se instale: sudo apt install npm build-essential
+
 # Instalacion de la version 14.15.1 de Node.
 RUN nvm install 14.15.1
 
@@ -55,7 +57,7 @@ RUN nvm install 14.15.1
 RUN npm i -S express multer path morgan fs react react-dom
 
 # Instalacion de dependencias de desarrollo
-RUN npm i babel-core babel-preset-react babel-preset-es2015 babel-loader webpack webpack-cli -D
+RUN npm i -S babel-core babel-preset-react babel-preset-es2015 babel-loader webpack webpack-cli -D
 
 
 

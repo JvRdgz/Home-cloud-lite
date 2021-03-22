@@ -10,7 +10,7 @@
 	- react
 	- react-dom
 
-	=> npm i -S express express-fileupload multer path morgan fs react react-dom
+	=> npm i -S express express-fileupload multer path morgan fs react react-dom mime-types
 	3.1º- Como dependencias de desarrollo:
 		- babel-core
 		- babel-preset-react
