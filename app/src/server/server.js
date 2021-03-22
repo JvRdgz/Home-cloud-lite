@@ -3,7 +3,7 @@
 const PORT = process.env.PORT || 3000;
 
 // Importamos express
-const express = require('express');
+// const express = require('express');
 const express = require('express-fileupload')
 const app = express();
 
