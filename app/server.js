@@ -17,10 +17,11 @@ const multer = require('multer');
 const fs = require('fs');
 
 const mimeTypes = require('mime-types');
+const { pathToFileURL } = require('url');
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, "public")));
 
-fs.readdir('./uploads', function (err, files) {
+fs.readdir(path.join(__dirname, "uploads"), function (err, files) {
     if (err) {
         onerror(err);
         return;
@@ -68,7 +69,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 */
 
 app.get("/", (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + path.join("public", "index.html"));
 });
 
 // app.use(expressFileUpload());
@@ -77,7 +78,7 @@ app.get("/", (req, res) => {
 // file: archivo que se esta subiendo
 // cb: aquello que se va a llamar cuando esta funcion termine.
 const storage = multer.diskStorage({
-    destination: './uploads/',
+    destination: path.join(__dirname, "uploads"),
     filename: function(req, file, cb) {
         // Aqui se va a crear un nombre para nuestro fichero.
         // El nombre se puede modificar, pero el nombre por defecto
