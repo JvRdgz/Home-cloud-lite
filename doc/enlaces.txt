@@ -11,3 +11,6 @@ nvm install 14.15.1 (Alomejor hay una version nueva para entonces)
 
 - Guardar imagenes en MongoDB
 https://code.tutsplus.com/es/tutorials/file-upload-with-multer-in-node--cms-32088
+
+Sincronizar forks:
+https://victorhckinthefreeworld.com/2016/12/14/git-mantener-un-fork-de-un-repositorio-actualizado/
