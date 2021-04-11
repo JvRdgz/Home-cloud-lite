@@ -2,15 +2,21 @@
 2º- creo el paquete .json => npm init -y
 3º- Instalamos las siguientes dependencias:
 	- Express
-	- Express-fileupload
+	- Express-fileupload => Subida de archivos
+	- Express-session => Manejo de sesiones
+	- Cookie-parser => Para administrar las Cookies del navegador (para ver si esta logeado o no)
+	- Connect-flash => Para mandar mensajes que se almacenan en el navegador, cuando el usuario ha cometido algun error al logearse...
+	- Bcrypt-nodejs => Cifrado de datos
 	- Multer
 	- Path
-	- Morgan
+	- Morgan => Administrar las peticiones http.
 	- fs
 	- react
 	- react-dom
+	- mongoose => Modulo para conectarnos a MongoDB
+	- passport => Atuenticarte con cuentas de google/facebook/twitter, etc
 
-	=> npm i -S express express-fileupload multer path morgan fs react react-dom mime-types
+	=> npm i -S express express-fileupload express-session cookie-parse connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport
 	3.1º- Como dependencias de desarrollo:
 		- babel-core
 		- babel-preset-react

@@ -54,13 +54,13 @@ RUN 	apk install -y nodejs npm
 # RUN nvm install 14.15.1
 
 # Instalacion de dependencias necesarias para la aplicacion.
-RUN		npm i -S express multer path morgan fs react react-dom
+RUN		npm i -S express express-fileupload express-session cookie-parse connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport
 
 # Instalacion de dependencias de desarrollo
 RUN		npm i -S babel-core babel-preset-react babel-preset-es2015 babel-loader webpack webpack-cli -D
 
 # Instalacion de P2M para ejecutar demonios dentro de la app
-RUN npm install pm2@latest -g
+RUN		npm install pm2@latest -g
 
 
 
@@ -78,7 +78,10 @@ COPY	app ./
 #############  PUERTOS DE ESCUCHA DE LOS SERVIDORES  ##############
 ###################################################################
 
-# EXPOSE 80 443
+# En el server.js esta definido que si no encuentra uno de los puertos del
+# sistema operativo, coja por defecto el puerto 3000. En este caso deberia
+# coger el puerto definido en el Dockerfile.
+EXPOSE 80 443
 
 # Ejecutar el comando para levantarla en local.
 CMD [ "bash ./tmp/app/init_services.sh" ]

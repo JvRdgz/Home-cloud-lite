@@ -14,3 +14,9 @@ https://code.tutsplus.com/es/tutorials/file-upload-with-multer-in-node--cms-3208
 
 Sincronizar forks:
 https://victorhckinthefreeworld.com/2016/12/14/git-mantener-un-fork-de-un-repositorio-actualizado/
+
+Configurar dominio con Nginx para la app. Hacer esto en Docker.
+https://www.digitalocean.com/community/tutorials/como-configurar-una-aplicacion-de-node-js-para-produccion-en-ubuntu-18-04-es
+
+Elegir dominio para la web. (IMPORTANTE PARTE SEO)
+https://smartkeyword.io/es/seo-technique-seo-extension-nom-domaine/
