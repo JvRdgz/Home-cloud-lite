@@ -38,3 +38,6 @@
 		de convertir nuestro index.jsx a un js que se encuentre en la carpete /js
 
 9º- Sincronizando repo heroku con repo github
+
+10º- Instalar PM2 para administrar procesos de la aplicacion.permite implementar demonios
+	en aplicaciones para que puedan funcionar en segundo plano como servicios.

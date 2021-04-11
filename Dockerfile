@@ -59,6 +59,9 @@ RUN		npm i -S express multer path morgan fs react react-dom
 # Instalacion de dependencias de desarrollo
 RUN		npm i -S babel-core babel-preset-react babel-preset-es2015 babel-loader webpack webpack-cli -D
 
+# Instalacion de P2M para ejecutar demonios dentro de la app
+RUN npm install pm2@latest -g
+
 
 
 

@@ -2,3 +2,9 @@ JACOBO:
 - Formulario/boton bonito en el index.html para subir los archivos.
 - Hacer otro para descargarlos, igual que el de subida de antes, pero
 	para descargas.
+
+JAVI:
+- Crear un popup para cuando se sube un archivo, que aparezca indicando
+	que el archivo se ha subido correctamente.
+- Que jacobo cree un formulario para probar las descargas del archivo.
+	De momento probar en Postman.
