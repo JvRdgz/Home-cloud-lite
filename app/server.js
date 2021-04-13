@@ -2,6 +2,12 @@
 // En caso contrario coge el puerto 3000.
 const PORT = process.env.PORT || 3000;
 
+
+/**
+ * REQUERIMIENTOS DE MODULOS DE NODEJS
+ */
+
+
 // Importamos express
 const express = require('express');
 // const expressFileUpload = require('express-fileupload')
@@ -18,6 +24,38 @@ const fs = require('fs');
 
 const mimeTypes = require('mime-types');
 const { pathToFileURL } = require('url');
+
+// Modulo para conectarnos a la base de datos de MongoDB
+const mongoose = require('mongoose');
+
+// Modulo para gestionar la autentificacion en el sistema.
+const passport = require('passport');
+
+// Modulo para gestion de errores por parte del usuario
+const flash = require('connect-flash');
+
+// Modulo para mostrar por consola los metodos http que llegan al servidor
+const morgan = require('morgan');
+
+// Modulo para poder administrar cookies
+const cookieParser = require('cookie-parser');
+
+const bodyParser = require('body-parser');
+
+const session = require('express-session');
+
+
+
+/**
+ * CONEXION A LA BASE DE DATOS.
+*/
+
+const { urlMongoUsers } = require(__dirname + path.join("config", "database.js"));
+
+mongoose.connect(urlMongoUsers, {
+    // Para eliminar el mensaje de la consola
+    useMongoClient: true
+});
 
 app.use(express.static(path.join(__dirname, "public")));
 

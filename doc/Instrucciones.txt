@@ -5,6 +5,7 @@
 	- Express-fileupload => Subida de archivos
 	- Express-session => Manejo de sesiones
 	- Cookie-parser => Para administrar las Cookies del navegador (para ver si esta logeado o no)
+	- Body-parser => Procesar informacion que nos llega desde el servidor
 	- Connect-flash => Para mandar mensajes que se almacenan en el navegador, cuando el usuario ha cometido algun error al logearse...
 	- Bcrypt-nodejs => Cifrado de datos
 	- Multer
@@ -16,7 +17,7 @@
 	- mongoose => Modulo para conectarnos a MongoDB
 	- passport => Atuenticarte con cuentas de google/facebook/twitter, etc
 
-	=> npm i -S express express-fileupload express-session cookie-parse connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport
+	=> npm i -S express express-fileupload express-session cookie-parse connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser
 	3.1º- Como dependencias de desarrollo:
 		- babel-core
 		- babel-preset-react
