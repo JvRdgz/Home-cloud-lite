@@ -1,4 +1,6 @@
 *{padding: 0; margin: 0; box-sizing: border-box;}
+
+
 body{height: 900px;}
 header {
 	/*background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');*/
@@ -18,6 +20,20 @@ header .overlay{
 	color: #FFF;
 	text-shadow: 1px 1px 1px #333;
   background-image: linear-gradient( 135deg, #7c909a 10%, #40a8da 100%);
+	
+} 
+
+/*body .degradado {
+	background-image: linear-gradient( 135deg, #7c909a 10%, #40a8da 100%);
+}*/
+
+header .overlay2{
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #333;
+  background-image: linear-gradient( 135deg, #feffff 10%, #7c909a 100%);
 	
 } 
 
@@ -82,6 +98,24 @@ button:hover{
 	padding: 50px;
 }
 
+.subida {
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 50px;
+	color: #333;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+	background-image: linear-gradient( 135deg, #7c909a 10%, #40a8da 100%);
+}
+
+.circular--square {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+  }
+  
 .boton1, .boton2, .boton3{
 	border: none;
 	outline: none;
@@ -132,3 +166,15 @@ footer {
 	text-decoration: none;
 
   }
+
+  .botoninicio{
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 50px;
+	color: #333;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+	background-image: linear-gradient( 135deg, #feffff 10%, #7c909a 100%);
+  }
+  

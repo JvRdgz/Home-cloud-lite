@@ -1,78 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="icon" type="image/png" href="imagenes/myskylogo.png" />
+    <link rel="icon" type="image/png" href="imagenes/Logo_Mysky_Javi.png" />
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-    <title>MySky Cloud</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <script type="text/javascript" src="login/signup.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <title>My Sky</title>
 </head>
-<body>
+
+<body class="degradado">
     <header>
-        <div class="overlay">
-    <h1>MySky</h1>
-    <h3>Reasons for Choosing us</h3>
-    <p>Esto es una web de ejemplo de lo que puede ser el resultado en un futuro.</p>
-    <p>MySky es un espacio reservado para el usuario, cuya funcionalidad se basa en el de una nube.</p>
-        <br>
-        <form action="readmore.html">
-        <button>READ MORE</button>
-            </div>
-        <!-- HACER LOS FORMULARIOS BONITOS -->
-        </form>
-        <br>
-        <!-- enctype es un atributo que define la extension (mime-type) del 
-            formulario que se esta enviando. Para cuando el formulario contenga 
-            archivos, el valor tiene que ser: multipart/form-data. Basicamente esto
-            lo necesitamos para que el servidor reciba el archivo -->
-        <form action="/files" enctype="multipart/form-data" method="POST">
-            <input type="file" name="avatar" value="Subir" multiple>
-            <input type="submit" value="Subir">
-        </form>
+        <div class="overlay2">
+            <img src="imagenes/Logo_Mysky_Javi.png" width="400" height="400">
+        </div>
     </header>
-    <br><br><br>
-    <table class="archivos">
-        <tr>
-            <td class="celda">
-                <form action="musica.html">
-                    
-                    <button class="boton1">Mi MUSICA</button>
-                </form>
-            </td>
-            <td class="celda">
-                <form action="fotos.html">
-                    <button class="boton2">FOTOS</button>
 
-                </form>
-            </td>
-            <td class="celda">
-                <form action="videos.html">
-                    <button class="boton3">VIDEOS</button>
+    <br>
 
-                </form>
-            </td>
-        </tr>
-    </table>
+    
+    
 
-    <footer>
-        <table class="tablafooter">
+    <!--<center>
+        <table bordercolor="black">
+         
             <tr>
                 <td>
-                    <h5>CONÓCENOS</h5>
-                    <ul>
-                        <li class="listacontactos">
-                            <a class="enlacecontactos" href="readmore.html">contacto</a>
-                        </li>
-                        
-                    </ul>
+                    <center>
+                        <form method="GET" action="createdatabasetabla.php">
+                            <input class="botoninicio" type="text" name="nombreusuario" value="correo"></input>
+                            <br><br>
+                            <input class="botoninicio" type="text" name="contraseñausuario" value="contraseña"></input>
+                            <br><br>
+                            <input class="botoninicio" type="submit" value="inicio sesion">
+                        </form>
+                    </center>
                 </td>
             </tr>
         </table>
-    </footer>
-    <!--<div id="app"></div>
-    <script src="js/bundle.js" charset="utf-8"></script> -->
+    </center>-->
+    <!-- Form-->
+    
+   <div class="form">
+        <div class="form-toggle"></div>
+        <div class="form-panel one">
+            <div class="form-header">
+                <h1>Account Login</h1>
+            </div>
+            <div class="form-content">
+                <form>
+                    <div class="form-group"><label for="username">Username</label><input type="text" id="username"
+                            name="username" required="required" /></div>
+                    <div class="form-group"><label for="password">Password</label><input type="password" id="password"
+                            name="password" required="required" /></div>
+                    <div class="form-group"><label class="form-remember"><input type="checkbox" />Remember Me</label><a
+                            class="form-recovery" href="#">Forgot Password?</a></div>
+                    <div class="form-group"><button type="submit">Log In</button></div>
+                </form>
+            </div>
+        </div>
+        <div class="form-panel two">
+            <div class="form-header">
+                <h1>Register Account</h1>
+            </div>
+            <div class="form-content">
+                <form>
+                    <div class="form-group"><label for="username">Username</label><input type="text" id="username"
+                            name="username" required="required" /></div>
+                    <div class="form-group"><label for="password">Password</label><input type="password" id="password"
+                            name="password" required="required" /></div>
+                    <div class="form-group"><label for="cpassword">Confirm Password</label><input type="password"
+                            id="cpassword" name="cpassword" required="required" /></div>
+                    <div class="form-group"><label for="email">Email Address</label><input type="email" id="email"
+                            name="email" required="required" /></div>
+                    <div class="form-group"><button type="submit">Register</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="pen-footer"><a href="https://www.behance.net/gallery/30478397/Login-Form-UI-Library" target="_blank"><i
+                class="material-icons">arrow_backward</i>View on Behance</a><a
+            href="https://github.com/andyhqtran/UI-Library/tree/master/Login%20Form" target="_blank">View on Github<i
+                class="material-icons">arrow_forward</i></a></div>
 </body>
+
 </html>
