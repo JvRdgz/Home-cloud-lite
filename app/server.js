@@ -45,7 +45,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 
 
-
 /**
  * CONEXION A LA BASE DE DATOS.
 */
@@ -71,6 +70,19 @@ fs.readdir(path.join(__dirname, "uploads"), function (err, files) {
         console.log(files);
 });
 
+
+/**
+ * MIDDLEWARES
+ */
+
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(session({
+    secret: 'elpepe',
+    resave: false,
+    saveUninitialized: false
+}));
 
 /*
 // En esta variable se guarda toda la gestion de la subida de archivos al servidor
