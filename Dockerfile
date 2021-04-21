@@ -12,6 +12,7 @@ WORKDIR	/tmp
 
 RUN		apk update
 RUN		apk upgrade --yes
+RUN		apk install -y gnupg
 
 ##################################################################
 ################ INSTALACION DE JAVA (jdk + jre) #################
@@ -54,7 +55,7 @@ RUN 	apk install -y nodejs npm
 # RUN nvm install 14.15.1
 
 # Instalacion de dependencias necesarias para la aplicacion.
-RUN		npm i -S express express-fileupload express-session cookie-parse connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport
+RUN		npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport
 
 # Instalacion de dependencias de desarrollo
 RUN		npm i -S babel-core babel-preset-react babel-preset-es2015 babel-loader webpack webpack-cli -D
@@ -62,8 +63,11 @@ RUN		npm i -S babel-core babel-preset-react babel-preset-es2015 babel-loader web
 # Instalacion de P2M para ejecutar demonios dentro de la app
 RUN		npm install pm2@latest -g
 
+# Instalacion de MongoDB
 
-
+# RUN		wget https://www.mongodb.org/static/pgp/server-4.4.asc -qO- | sudo apt-key add -
+RUN		apk --update add mongodb mongodb-tools
+RUN		mkdir -p /data/db
 
 ##################################################################
 ################ INSTALACION DE JAVA (jdk + jre) #################

@@ -40,49 +40,50 @@ const morgan = require('morgan');
 // Modulo para poder administrar cookies
 const cookieParser = require('cookie-parser');
 
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 
 const session = require('express-session');
 
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 /**
  * CONEXION A LA BASE DE DATOS.
 */
 
-const { urlMongoUsers } = require(__dirname + path.join("config", "database.js"));
+const { urlMongoUsers } = require(path.join(__dirname, "config", "database.js"));
 
 mongoose.connect(urlMongoUsers, {
     // Para eliminar el mensaje de la consola
     useMongoClient: true
 });
 
-app.use(express.static(path.join(__dirname, "public")));
+// Configuracion de passport
 
-fs.readdir(path.join(__dirname, "uploads"), function (err, files) {
-    if (err) {
-        onerror(err);
-        return;
-    }
-    // Aqui deberia de mostrar todos los archivos, mandando esto al frontend
-    else if (files.length == 0)
-        console.log('No existen archivos.');
-    else
-        console.log(files);
-});
-
+// require(path.join(__dirname, "config", "passport.js")(passport));
 
 /**
  * MIDDLEWARES
  */
 
+
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: false}));
+// app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
     secret: 'elpepe',
     resave: false,
     saveUninitialized: false
 }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+app.use(flash());
+
+// Rutas para comunicar la app con el html y css
+// require(path.join(__dirname, "routes")(app, passport));
 
 /*
 // En esta variable se guarda toda la gestion de la subida de archivos al servidor
@@ -102,9 +103,6 @@ let storage = multer.diskStorage({
 
 // const upload = multer({ storage });
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-
 // Nuestro ENDPOINT
 // app.get('/', (req, res) => {
 //     // Este mensaje hay que mandarselo al frontend
@@ -117,6 +115,18 @@ app.post('/upload', upload.single('file'), (req, res) => {
     return (res.send(req.file));
 });
 */
+
+fs.readdir(path.join(__dirname, "uploads"), function (err, files) {
+    if (err) {
+        onerror(err);
+        return;
+    }
+    // Aqui deberia de mostrar todos los archivos, mandando esto al frontend
+    else if (files.length == 0)
+        console.log('No existen archivos.');
+    else
+        console.log(files);
+});
 
 app.get("/", (req, res) => {
     res.sendFile(__dirname + path.join("public", "index.html"));

@@ -20,3 +20,6 @@ https://www.digitalocean.com/community/tutorials/como-configurar-una-aplicacion-
 
 Elegir dominio para la web. (IMPORTANTE PARTE SEO)
 https://smartkeyword.io/es/seo-technique-seo-extension-nom-domaine/
+
+Tutorial de MongoDB con Nodejs
+https://www.youtube.com/watch?v=o_cDpiDDJD0
