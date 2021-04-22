@@ -16,8 +16,9 @@
 	- react-dom
 	- mongoose => Modulo para conectarnos a MongoDB
 	- passport => Atuenticarte con cuentas de google/facebook/twitter, etc
+	- passport-local
 
-	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser
+	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local
 	3.1º- Como dependencias de desarrollo:
 		- babel-core
 		- babel-preset-react

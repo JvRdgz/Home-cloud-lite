@@ -54,7 +54,8 @@ app.use(express.urlencoded({
  * CONEXION A LA BASE DE DATOS.
 */
 
-const { urlMongoUsers } = require(path.join(__dirname, "config", "database.js"));
+const bbddRute = path.join(__dirname, "config", "database.js");
+const { urlMongoUsers } = require(bbddRute);
 
 mongoose.connect(urlMongoUsers, {
     // Para eliminar el mensaje de la consola
@@ -62,8 +63,8 @@ mongoose.connect(urlMongoUsers, {
 });
 
 // Configuracion de passport
-
-// require(path.join(__dirname, "config", "passport.js")(passport));
+const passportRute = path.join(__dirname, "config", "passport.js");
+require(passportRute)(passport);
 
 /**
  * MIDDLEWARES
@@ -83,7 +84,8 @@ app.use(session({
 app.use(flash());
 
 // Rutas para comunicar la app con el html y css
-// require(path.join(__dirname, "routes")(app, passport));
+const routesRute = path.join(__dirname, "routes.js");
+require(routesRute)(app, passport);
 
 /*
 // En esta variable se guarda toda la gestion de la subida de archivos al servidor
