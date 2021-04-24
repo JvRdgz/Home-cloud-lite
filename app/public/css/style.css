@@ -33,7 +33,7 @@ header .overlay2{
 	padding: 50px;
 	color: #FFF;
 	text-shadow: 1px 1px 1px #333;
-  background-image: linear-gradient( 135deg, #feffff 10%, #7c909a 100%);
+	background-image: linear-gradient( 135deg, #feffff 10%, #40a8da 100%);
 	
 } 
 
@@ -153,6 +153,9 @@ footer {
 	text-shadow: 1px 1px 1px #333;
   }
 
+  .footerIndex {
+	background-image: linear-gradient( 135deg, #feffff 10%, #40a8da 100%);
+  }
  /* .tablafooter{
 
   }*/
@@ -168,13 +171,13 @@ footer {
   }
 
   .botoninicio{
-	border: none;
+	border: 2px;
+	border-radius: 5px;
 	outline: none;
-	padding: 10px 20px;
-	border-radius: 50px;
+	padding: 10px 40px;
 	color: #333;
 	margin-bottom: 50px;
 	box-shadow: 0 3px 20px 0 #0000003b;
-	background-image: linear-gradient( 135deg, #feffff 10%, #7c909a 100%);
+	background: #b5e8ff;
   }
   
