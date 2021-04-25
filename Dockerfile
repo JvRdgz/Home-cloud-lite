@@ -68,6 +68,8 @@ RUN		npm install pm2@latest -g
 # RUN		wget https://www.mongodb.org/static/pgp/server-4.4.asc -qO- | sudo apt-key add -
 RUN		apk --update add mongodb mongodb-tools
 RUN		mkdir -p /data/db
+RUN		apk install -y mongodb
+RUN 	sudo systemctl start mongod.service
 
 ##################################################################
 ################ INSTALACION DE JAVA (jdk + jre) #################

@@ -53,3 +53,7 @@
 11º- Para ejecutar MongoDB
 	- Desde terminal, ejecutar este comando: sudo systemctl enable --now mongod
 	- Para comprobar el estado del cliente MongoDB: systemctl status mongod
+	- Detener el servidor MongoDB: sudo systemctl stop mongodb
+	- Para iniciar el servidor cuando éste está detenido: sudo systemctl start mongodb
+	- Reiniciar el servidor: sudo systemctl restart mongodb
+	- Para habilitar el servidor: sudo systemctl enable mongodb

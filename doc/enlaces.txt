@@ -23,3 +23,6 @@ https://smartkeyword.io/es/seo-technique-seo-extension-nom-domaine/
 
 Tutorial de MongoDB con Nodejs
 https://www.youtube.com/watch?v=o_cDpiDDJD0
+
+Instalacion de MongoDB
+https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04-es
