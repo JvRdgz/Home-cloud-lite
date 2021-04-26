@@ -3,7 +3,7 @@
 
 body{height: 900px;}
 header {
-	/*background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');*/
+	background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
 	text-align: center;
 	width: 100%;
 	height: auto;
@@ -23,9 +23,9 @@ header .overlay{
 	
 } 
 
-/*body .degradado {
+body .degradado {
 	background-image: linear-gradient( 135deg, #7c909a 10%, #40a8da 100%);
-}*/
+}
 
 header .overlay2{
 	width: 100%;
@@ -180,4 +180,5 @@ footer {
 	box-shadow: 0 3px 20px 0 #0000003b;
 	background: #b5e8ff;
   }
-  
+
+
