@@ -16,7 +16,7 @@
             <div class="overlay">
         <h1>MySky</h1>
         <h3>Reasons for Choosing us</h3>
-        <p>Esto es una web de ejemplo de lo que puede ser el resultado en un futuro.</p>
+        <p>Esto es una web de ejemplo de lo que puede ser el resultado en un futuro.</p>  
         <p>MySky es un espacio reservado para el usuario, cuya funcionalidad se basa en el de una nube.</p>
         </div>
         </header>
@@ -24,9 +24,23 @@
             formulario que se esta enviando. Para cuando el formulario contenga 
             archivos, el valor tiene que ser: multipart/form-data. Basicamente esto
             lo necesitamos para que el servidor reciba el archivo -->
-            <form action="/files" enctype="multipart/form-data" method="POST">
-                <input type="file" name="avatar" value="Subir" multiple>
-                <input type="submit" value="Subir">
-            </form>
+        <br><br>
+        <center>
+        <table>
+            <tr>
+                <th>
+                    <h3>SUBE AQUI TU MUSICA!</h3>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                <form action="/files" enctype="multipart/form-data" method="POST">
+                    <input type="file" name="avatar" value="Subir" multiple>
+                    <input type="submit" value="Subir">
+                </form>
+            </th>
+            </tr>
+        </table>
+    </center>
 </body>
 </html>
