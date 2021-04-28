@@ -40,14 +40,16 @@ const morgan = require('morgan');
 // Modulo para poder administrar cookies
 const cookieParser = require('cookie-parser');
 
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
 const session = require('express-session');
 
+// Ficheros estaticos
 app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.json());
 app.use(express.urlencoded({
-    extended: true
+    extended: false
 }));
 
 /**
@@ -61,6 +63,10 @@ mongoose.connect(urlMongoUsers, {
     // Para eliminar el mensaje de la consola
     useMongoClient: true
 });
+
+app.set('views', path.join(__dirname, 'views'));
+// Motor de plantillas.
+app.set('view engine', 'ejs');
 
 // Configuracion de passport
 const passportRute = path.join(__dirname, "config", "passport.js");
@@ -79,8 +85,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 // Rutas para comunicar la app con el html y css
@@ -128,10 +134,6 @@ fs.readdir(path.join(__dirname, "uploads"), function (err, files) {
         console.log('No existen archivos.');
     else
         console.log(files);
-});
-
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + path.join("public", "index.html"));
 });
 
 // app.use(expressFileUpload());

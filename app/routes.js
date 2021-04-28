@@ -1,5 +1,10 @@
 module.exports = (app, passport) => {
-	
+
+	// const indexRoute = path.join(__dirname, "views", "index.ejs");
+	app.get("/", (req, res) => {
+		res.render('index');
+	});
+
 	app.get('/login', (req, res) => {
 		res.render('login', {
 			message: req.flash('loginMessage')

@@ -17,8 +17,9 @@
 	- mongoose => Modulo para conectarnos a MongoDB
 	- passport => Atuenticarte con cuentas de google/facebook/twitter, etc
 	- passport-local
+	- ejs
 
-	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local
+	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs
 	3.1º- Como dependencias de desarrollo:
 		- babel-core
 		- babel-preset-react
@@ -38,12 +39,9 @@
 10º Pequeño resumen del workspace:
 	- server.js se encarga de ejecutar a traves de express, todo lo que se encuentra
 		en la carpeta public. (lo envia a nuestro cliente).
-	- En la carpeta /public tenemos nuestro archivo index.html, que va a leer el bundle.js que se
-		encuentra dentro de la carpeta /js. Este bundle es la aplicacion de React.
-	- Para generar nuestro proyecto React, en la carpeta /src contendra nuestro archivo index.jsx que
-		es el archivo inicial con nuestro componente. Para transformar este, vamos a tener nuestro
-		archivo de configuracion de webpack, que contiene la config del proyecto, y se encargara
-		de convertir nuestro index.jsx a un js que se encuentre en la carpete /js
+	- En la carpeta /public tendremos todos los archivos css e imagenes estaticas que se llaman
+		en nuestros .ejs
+	- En la carpeta /views tendremos todas nuestras vistas html.
 
 9º- Sincronizando repo heroku con repo github
 
