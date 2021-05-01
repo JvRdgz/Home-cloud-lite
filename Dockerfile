@@ -55,7 +55,7 @@ RUN 		apt install -y nodejs npm
 # RUN nvm install 14.15.1
 
 # Instalacion de dependencias necesarias para la aplicacion.
-RUN		npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs
+RUN		npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional
 
 # Instalacion de P2M para ejecutar demonios dentro de la app
 RUN		npm install pm2@latest -g

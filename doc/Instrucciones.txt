@@ -19,7 +19,7 @@
 	- passport-local
 	- ejs
 
-	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs
+	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional
 	3.1º- Como dependencias de desarrollo:
 		- babel-core
 		- babel-preset-react
