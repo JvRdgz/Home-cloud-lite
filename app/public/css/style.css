@@ -181,4 +181,10 @@ footer {
 	background: #b5e8ff;
   }
 
+.login {
+	background-image: linear-gradient( 135deg, #7c909a 10%, #40a8da 100%);
+}
 
+.signup {
+	background-image: linear-gradient( 135deg, #40a8da  10%, #7c909a 100%);
+}

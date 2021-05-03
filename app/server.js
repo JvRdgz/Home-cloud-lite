@@ -168,6 +168,7 @@ app.post("/files", upload.array('avatar', 12), (req, res, next) => {
     // return res.status(200).send({ message : `Fichero guardado con exito en ${req.hostname}/${req.file.path}.` });
 });
 
+/*
 app.get("/files", upload.array('download', 12), (req, res, next) => {
     let file = req.files;
     if (!file) {
@@ -176,6 +177,7 @@ app.get("/files", upload.array('download', 12), (req, res, next) => {
         return next(error);
     }
     res.download(file);
-}) 
+});
+*/
 
 app.listen(PORT, () => console.log(`Server is up on port: ${PORT}`));

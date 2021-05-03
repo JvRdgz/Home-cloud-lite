@@ -20,6 +20,11 @@
             <div class="card mt-5">
                 <div class="card-body">
                     <h1 class="text-center"><span class="fa fa-sign-in"></span>Iniciar sesion</h1>
+                    <% if (message.lenght > 0) { %> 
+                        <div class="alert alert-danger">
+                            <%= message %> 
+                        </div>
+                    <% } %> 
                     <form action="/profile" method="POST">
                         <div class="form-group">
                             <input type="email" name="email" placeholder="email" required="required"

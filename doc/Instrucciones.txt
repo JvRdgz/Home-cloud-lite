@@ -55,3 +55,6 @@
 	- Para iniciar el servidor cuando éste está detenido: sudo systemctl start mongodb
 	- Reiniciar el servidor: sudo systemctl restart mongodb
 	- Para habilitar el servidor: sudo systemctl enable mongodb
+	
+11º- Para eliminar contenedores e imagenes que no se estan utilizando:
+	- docker system prune -a

@@ -11,7 +11,11 @@ module.exports = (app, passport) => {
 		});
 	});
 
-	// app.post('/login', passport.authenticate(''))
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect: '/profile',
+		failureRedirect: '/login',
+		failureFlash: true
+	}))
 
 	app.get('/signup', (req, res) => {
 		res.render('signup', {
@@ -25,9 +29,31 @@ module.exports = (app, passport) => {
 		failureFlash: true
 	}));
 
-	app.get('/profile', (req, res) => {
+	app.get('/profile', isLoggedIn, (req, res) => {
 		res.render('profile', {
 			user: req.user
 		});
 	});
+
+	app.get('/logout', (req, res) => {
+		req.logout();
+		res.redirect('/');
+	});
+
+	/*
+	app.get("/files", upload.array('download', 12), (req, res, next) => {
+		let file = req.files;
+		if (!file) {
+			const error = new Error('No has elegido ningun archivo');
+			error.httpStatusCode = 400;
+			return next(error);
+		}
+		res.download(file);
+	});
+	*/
 };
+
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated()) {return next();}
+	return res.redirect('/');
+}

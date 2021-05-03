@@ -9,7 +9,7 @@
         <title>Registro</title>
 </head>
 
-<body class="degradado">
+<body class="signup">
     <header>
         <div class="overlay2">
             <img src="img/Logo_Mysky_Javi.png" width="80" height="60">
@@ -19,8 +19,14 @@
         <div class="col-sm-6 mx-auto">
             <div class="card mt-5">
                 <div class="card-body">
-                    <h1 class="text-center"><span class="fa fa-sign-in"></span>Iniciar sesion</h1>
-                    <form action="/profile" method="POST">
+                    <h1 class="text-center"><span class="fa fa-sign-in"></span>Registro</h1>
+
+                    <% if (message.lenght > 0) { %> 
+                    <div class="alert alert-danger">
+                        <%= message %> 
+                    </div>
+                    <% } %> 
+                    <form action="/signup" method="POST">
                         <div class="form-group">
                             <input type="email" name="email" placeholder="email" required="required"
                                 class="form-control"></input>
@@ -35,7 +41,7 @@
                     </form>
                     <hr>
                     <div class="text-center">
-                        <p>¿Necesitas una cuenta? <a href="/signup">Registrarse</a></p>
+                        <p>¿Tienes ya una cuenta? <a href="/login">Inicia sesion</a></p>
                         <p>Volver a <a href="/">inicio</a></p>
                     </div>
                 </div>
