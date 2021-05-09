@@ -56,3 +56,4 @@
 	- Para ejecutar el servicio de mongodb: mongo
 11º- Para eliminar contenedores e imagenes que no se estan utilizando:
 	- docker system prune -a
+12º- Comandos mongodb: https://geekflare.com/es/mongodb-queries-examples/

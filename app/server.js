@@ -76,9 +76,6 @@ db.once('open', () => {
 });
 
 
-
-
-
 app.set('views', path.join(__dirname, 'views'));
 // Motor de plantillas.
 app.set('view engine', 'ejs');
