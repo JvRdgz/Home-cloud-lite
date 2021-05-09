@@ -56,13 +56,32 @@ app.use(express.urlencoded({
  * CONEXION A LA BASE DE DATOS.
 */
 
-const bbddRute = path.join(__dirname, "config", "database.js");
-const { urlMongoUsers } = require(bbddRute);
+// const bbddRute = require(path.join(__dirname, "config", "database.js"));
+// const userbbdd = require(path.join(__dirname, "user.js"));
+// const { urlMongoUsers } = require(path.join(__dirname, "config", "database.js"));
+// const { urlMongoUsers } = require('./config/database');
 
-mongoose.connect(urlMongoUsers, {
+// PARA CONECTAR CON EL CLUSTER USANDO LA WEB
+// 'mongodb+srv://usuario-JR:elpepe14@mysky.ragmu.mongodb.net/users?retryWrites=true&w=majority'
+
+
+// mongoose.connect(urlMongoUsers, {
+mongoose.connect('mongodb://localhost:27017/mysky', {
     // Para eliminar el mensaje de la consola
-    useMongoClient: true
+    // useMongoClient: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Error al conectar a la BBDD:')); // enlaza el track de error a la consola (proceso actual)
+db.once('open', () => {
+    console.log('Se ha establecido conexion con la BBDD'); // si esta todo ok, imprime esto
+});
+
+
+
+
 
 app.set('views', path.join(__dirname, 'views'));
 // Motor de plantillas.
@@ -124,6 +143,7 @@ app.post('/upload', upload.single('file'), (req, res) => {
 });
 */
 
+// SUBIDA DE ARCHIVOS AL SERVIDOR
 fs.readdir(path.join(__dirname, "uploads"), function (err, files) {
     if (err) {
         onerror(err);
@@ -136,6 +156,44 @@ fs.readdir(path.join(__dirname, "uploads"), function (err, files) {
         console.log(files);
 });
 
+// DESCARGA DE ARCHIVOS DESDE EL SERVIDOR
+app.get("/files", (req, res, files, err) => {
+    let ext = path.extname(req.params.file);
+    if (files.length == 0)
+        console.log('No existen archivos.')
+    else
+        console.log(files);
+    /*
+    if (!ext.match(/^\.(png|jpg)$/)) {
+        return res.status(404).end()
+    }
+    */
+
+    let fd = fs.createReadStream(path.join(__dirname, "uploads",
+        req.params.file));
+
+    fd.on("error", (e) => {
+        // SI NO ENCUENTRA EL ARCHIVO (ENOENT)
+        if (e.code == "ENOENT") {
+            res.status(404);
+
+            if (req.accepts('html')) {
+                res.setHeader("Content-Type", "text/html");
+
+                res.write("<strong>Error:</strong> Archivo no encontrado.");
+            }
+
+            return res.end();
+        }
+
+        res.status(500).end();
+    });
+
+    res.setHeader("Content-Type", "image/" + ext.substr(1));
+
+    fd.pipe(res);
+});
+
 // app.use(expressFileUpload());
 
 // req: informacion de la peticion
@@ -143,7 +201,7 @@ fs.readdir(path.join(__dirname, "uploads"), function (err, files) {
 // cb: aquello que se va a llamar cuando esta funcion termine.
 const storage = multer.diskStorage({
     destination: path.join(__dirname, "uploads"),
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         // Aqui se va a crear un nombre para nuestro fichero.
         // El nombre se puede modificar, pero el nombre por defecto
         // nunca se va repetir, y concatenamos la extension del archivo con mimeType

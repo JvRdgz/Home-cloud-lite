@@ -93,14 +93,10 @@ COPY	./app ./
 ###################################################################
 
 # En el server.js esta definido que si no encuentra uno de los puertos del
-# sistema operativo, coja por defecto el puerto 3000. En este caso deberia
-# coger el puerto definido en el Dockerfile.
-# EXPOSE 80 443
+# sistema operativo, coja por defecto el puerto 3000, pero en este caso el
+# contenedor escucha por el puerto 8080, por lo tanto para probar el servidor
+# en local, se debera de ingresar a localhost:8080
 EXPOSE 3000
 
 # Ejecutar el comando para levantarla en local.
 CMD bash init_services.sh
-
-# Comando para levantar contenedor
-# docker build -t MySky:1.0 .
-# docker run -it -p 80:80 -p 443:443 MySky:1.0
