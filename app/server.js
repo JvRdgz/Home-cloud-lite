@@ -61,10 +61,6 @@ app.use(express.urlencoded({
 // const { urlMongoUsers } = require(path.join(__dirname, "config", "database.js"));
 // const { urlMongoUsers } = require('./config/database');
 
-// PARA CONECTAR CON EL CLUSTER USANDO LA WEB
-// 'mongodb+srv://usuario-JR:elpepe14@mysky.ragmu.mongodb.net/users?retryWrites=true&w=majority'
-
-
 // mongoose.connect(urlMongoUsers, {
 mongoose.connect('mongodb://localhost:27017/mysky', {
     // Para eliminar el mensaje de la consola
