@@ -20,14 +20,6 @@
 	- ejs
 
 	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional
-	3.1º- Como dependencias de desarrollo:
-		- babel-core
-		- babel-preset-react
-		- babel-preset-es2015
-		- babel-loader
-		- webpack
-		- webpack-cli
-		=> npm i babel-core babel-preset-react babel-preset-es2015 babel-loader webpack webpack-cli -D
 
 4º- Creamos una carpeta /upload que es donde se va a guardar el contenido que queramos subir.
 	=> mkdir upload
@@ -38,9 +30,15 @@
 
 10º Pequeño resumen del workspace:
 	- server.js se encarga de ejecutar a traves de express, todo lo que se encuentra
-		en la carpeta public. (lo envia a nuestro cliente).
+		en la carpeta public. (lo envia a nuestro cliente). Tiene tambien la logica principal de gestion
+		de archivos.
+	- El archivo routes.js gestiona el redireccionamiento de los directorios durante el loggeo del usuario
+	- El archivo user.js contiene el esquema del usuario que se conectara y loggeara con la base de datos de
+		mongoose, ademas de cifrar sus credenciales.
+	- En la carpeta /config se guarda el archivo passport.js que es el encargado de crear y guardar el usuario
+		en la base de datos mongodb.
 	- En la carpeta /public tendremos todos los archivos css e imagenes estaticas que se llaman
-		en nuestros .ejs
+		en nuestros .ejs.
 	- En la carpeta /views tendremos todas nuestras vistas html.
 
 9º- Sincronizando repo heroku con repo github
@@ -55,6 +53,6 @@
 	- Para iniciar el servidor cuando éste está detenido: sudo systemctl start mongodb
 	- Reiniciar el servidor: sudo systemctl restart mongodb
 	- Para habilitar el servidor: sudo systemctl enable mongodb
-	
+	- Para ejecutar el servicio de mongodb: mongo
 11º- Para eliminar contenedores e imagenes que no se estan utilizando:
 	- docker system prune -a
