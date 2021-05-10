@@ -33,8 +33,8 @@
 		en la carpeta public. (lo envia a nuestro cliente). Tiene tambien la logica principal de gestion
 		de archivos.
 	- El archivo routes.js gestiona el redireccionamiento de los directorios durante el loggeo del usuario
-	- El archivo user.js contiene el esquema del usuario que se conectara y loggeara con la base de datos de
-		mongoose, ademas de cifrar sus credenciales.
+	- El archivo user.js dentro de /models contiene el esquema del usuario con el formato con el que se conectara
+		y loggeara con la base de datos de mongoose, ademas de cifrar sus credenciales.
 	- En la carpeta /config se guarda el archivo passport.js que es el encargado de crear y guardar el usuario
 		en la base de datos mongodb.
 	- En la carpeta /public tendremos todos los archivos css e imagenes estaticas que se llaman
@@ -57,3 +57,8 @@
 11º- Para eliminar contenedores e imagenes que no se estan utilizando:
 	- docker system prune -a
 12º- Comandos mongodb: https://geekflare.com/es/mongodb-queries-examples/
+	- Mostrar bases de datos: show dbs;
+	- Ver datos de la base de datos:
+		- use nombre_base_de_datos;
+		- Mostrar colecciones: show collections;
+		- Mostrar datos de la coleccion: db.nombre_de_la_coleccion.find().pretty();

@@ -39,18 +39,6 @@ module.exports = (app, passport) => {
 		req.logout();
 		res.redirect('/');
 	});
-
-	/*
-	app.get("/files", upload.array('download', 12), (req, res, next) => {
-		let file = req.files;
-		if (!file) {
-			const error = new Error('No has elegido ningun archivo');
-			error.httpStatusCode = 400;
-			return next(error);
-		}
-		res.download(file);
-	});
-	*/
 };
 
 function isLoggedIn(req, res, next) {

@@ -52,29 +52,9 @@ app.use(express.urlencoded({
     extended: false
 }));
 
-/**
- * CONEXION A LA BASE DE DATOS.
-*/
 
-// const bbddRute = require(path.join(__dirname, "config", "database.js"));
-// const userbbdd = require(path.join(__dirname, "user.js"));
-// const { urlMongoUsers } = require(path.join(__dirname, "config", "database.js"));
-// const { urlMongoUsers } = require('./config/database');
-
-// mongoose.connect(urlMongoUsers, {
-mongoose.connect('mongodb://localhost:27017/mysky', {
-    // Para eliminar el mensaje de la consola
-    // useMongoClient: true,
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Error al conectar a la BBDD:')); // enlaza el track de error a la consola (proceso actual)
-db.once('open', () => {
-    console.log('Se ha establecido conexion con la BBDD'); // si esta todo ok, imprime esto
-});
-
+// CONEXION CON LA BASE DE DATOS
+require(path.join(__dirname, "config", "database.js"));
 
 app.set('views', path.join(__dirname, 'views'));
 // Motor de plantillas.
@@ -84,11 +64,7 @@ app.set('view engine', 'ejs');
 const passportRute = path.join(__dirname, "config", "passport.js");
 require(passportRute)(passport);
 
-/**
- * MIDDLEWARES
- */
-
-
+// MIDDLEWARES
 app.use(morgan('dev'));
 app.use(cookieParser());
 // app.use(bodyParser.urlencoded({extended: false}));
@@ -99,6 +75,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+// Para pasar mensajes entre paginas html
 app.use(flash());
 
 // Rutas para comunicar la app con el html y css

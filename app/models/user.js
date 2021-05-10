@@ -27,11 +27,16 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateHash = function (password) {
+	// El algoritmo encriptara la contraseña 8 veces.
 	return bycrypt.hashSync(password, bycrypt.genSaltSync(8), null);
 };
 
+// Esta funcion compara la contraseña que introduce el usuario cifrada en la
+// funcion anterior, con la que esta guardada en la base de datos.
 userSchema.methods.validatePassword = function (password) {
 	return bycrypt.compareSync(password, this.local.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

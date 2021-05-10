@@ -1,11 +1,17 @@
 // Dependencia para el uso de rutas.
-// const path = require('path');
-
+const path = require('path');
+// Registro de usuario Local
 const LocalStrategy = require('passport-local').Strategy;
 
-// const user = require(path.join(__dirname, "user.js"));
+// const databaseRoute = path.join(__dirname, "database.js");
+
+// require(databaseRoute);
+
+const userRoute = path.join(__dirname, "..", "models", "user.js");
+const User = require(userRoute);
 
 module.exports = function (passport) {
+
 	passport.serializeUser(function (user, done) {
 		done(null, user.id);
 	});
@@ -18,12 +24,12 @@ module.exports = function (passport) {
 
 	// signup
 	passport.use('local-signup', new LocalStrategy({
-		usernameFiled: 'email',
-		passwordFiled: 'password',
+		usernameField: 'email',
+		passwordField: 'password',
 		passReqToCallback: true
 	},
 	function (req, email, password, done) {
-		User.findOne({'local.email': emai}, function (err, user) {
+		User.findOne({'local.email': email}, function (err, user) {
 			if (err) { return done(err); }
 			if (user) {
 				return done(null, false, req.flash('signupMessage', 'Ya existe una cuenta con este correo.'));
@@ -41,12 +47,12 @@ module.exports = function (passport) {
 
 	// signin
 	passport.use('local-login', new LocalStrategy({
-		usernameFiled: 'email',
-		passwordFiled: 'password',
+		usernameField: 'email',
+		passwordField: 'password',
 		passReqToCallback: true
 	},
 	function (req, email, password, done) {
-		User.findOne({'local.email': emai}, function (err, user) {
+		User.findOne({'local.email': email}, function (err, user) {
 			if (err) { return done(err); }
 			if (!user) {
 				return done(null, false, req.flash('loginMessage', 'No existe ninguna cuenta con este correo'));
