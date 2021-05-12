@@ -57,8 +57,12 @@
 11º- Para eliminar contenedores e imagenes que no se estan utilizando:
 	- docker system prune -a
 12º- Comandos mongodb: https://geekflare.com/es/mongodb-queries-examples/
+	- Conectar bbdd a atlas: https://studio3t.com/knowledge-base/articles/mongodb-atlas-login-ip-whitelisting/#connecting-from-a-different-physical-location
 	- Mostrar bases de datos: show dbs;
 	- Ver datos de la base de datos:
 		- use nombre_base_de_datos;
 		- Mostrar colecciones: show collections;
 		- Mostrar datos de la coleccion: db.nombre_de_la_coleccion.find().pretty();
+13º- Entorno de produccion:
+	- https://www.youtube.com/watch?v=dr-vDIOw2As => Heroku con mongodb
+	- https://www.youtube.com/watch?v=A7CJd7q4yeM => Variables de entorno.

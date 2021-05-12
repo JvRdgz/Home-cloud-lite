@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/mysky', {
+mongoose.connect('mongodb://localhost:27017/test', {
     // Para eliminar el mensaje de la consola
     // useMongoClient: true,
     useNewUrlParser: true,

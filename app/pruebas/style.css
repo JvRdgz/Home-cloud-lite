@@ -1,0 +1,184 @@
+*{padding: 0; margin: 0; box-sizing: border-box;}
+
+
+body{height: 900px;}
+header {
+	background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg');
+	text-align: center;
+	width: 100%;
+	height: auto;
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+	overflow: hidden;
+	border-radius: 0 0 85% 85% / 30%;
+}
+header .overlay{
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #333;
+  background-image: linear-gradient( 135deg, #7c909a 10%, #40a8da 100%);
+	
+} 
+
+body .degradado {
+	background-image: linear-gradient( 135deg, #7c909a 10%, #40a8da 100%);
+}
+
+header .overlay2{
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	color: #FFF;
+	text-shadow: 1px 1px 1px #333;
+	background-image: linear-gradient( 135deg, #feffff 10%, #40a8da 100%);
+	
+} 
+
+div.descripcion {
+	display: inline-block;
+	padding: 5px;
+}
+
+.center{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div.avatar {
+	/* cambia estos dos valores para definir el tamaño de tu círculo */
+    height: 200px;
+    width: 200px;
+	margin-right: 30px;
+	margin-left: 30px;
+	/*display: inline-block;
+	justify-content: center;*/
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}
+
+h1 {
+	font-family: 'Dancing Script', cursive;
+	font-size: 80px;
+	margin-bottom: 30px;
+}
+
+h3, p {
+	font-family: 'Open Sans', sans-serif;
+	margin-bottom: 30px;
+}
+
+button {
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 50px;
+	color: #333;
+	background: #fff;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+}
+button:hover{
+	cursor: pointer;
+}
+
+.archivos {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.celda{
+	padding: 50px;
+}
+
+.subida {
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 50px;
+	color: #333;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+	background-image: linear-gradient( 135deg, #7c909a 10%, #40a8da 100%);
+}
+
+.circular--square {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+  }
+  
+.boton1, .boton2, .boton3{
+	border: none;
+	outline: none;
+	padding: 10px 20px;
+	border-radius: 50px;
+	color: #333;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+}
+
+.boton1{
+	background: #7c909a;
+}
+
+.boton2{
+	background: #619ab6;
+}
+
+.boton3{
+	background: #40a8da;
+}
+
+.boton1, .boton2, .boton3:hover{
+	cursor: pointer;
+}
+
+  .listacontactos{
+	list-style-type: none;
+
+  }
+
+  a.enlacecontactos:link{
+	text-decoration: none;
+
+  }
+
+  .botoninicio{
+	border: 2px;
+	border-radius: 5px;
+	outline: none;
+	padding: 10px 40px;
+	color: #333;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 20px 0 #0000003b;
+	background: #b5e8ff;
+  }
+
+  #main-footer {
+	background-image: linear-gradient( 135deg, #feffff 10%, #40a8da 100%);
+	position: absolute;
+	color: black;
+	text-align: center;
+	bottom: 0;
+	  width: 100%;
+	  height: 40px;
+	padding: 20px;
+	margin-top: 40px;
+}
+	#main-footer p {
+		margin: 0;
+	}
+	
+	#main-footer a {
+		color: black;
+	}
+
