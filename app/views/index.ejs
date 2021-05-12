@@ -4,25 +4,27 @@
 <head>
     <%- include('partials/head'); %>
         <header>
-            <div class="overlay2">
-                <img src="/img/Logo_Mysky_Javi.png" style="width: auto; height: auto">
+            <div class="image">
+                <a href="/" , title="Inicio">
+                    <img src="/img/Logo_Mysky_Javi.png" alt="Inicio" width="140" height="100">
+                </a>
             </div>
+            <div class="texto">¡Bienvenido a My Sky!</div>
         </header>
         <title>My Sky</title>
 </head>
 
-<body class="degradado">
-    <div class="container">
-        <div class="card text-center mt-5">
-            <div class="card-body">
-                <a href="/login" class="btn btn-light">
-                    <span class="fa fa-user">Iniciar sesion</span>
-                </a>
-                <a href="/signup" class="btn btn-light">
-                    <span class="fa fa-user">Registrarse</span>
-                </a>
-            </div>
-        </div>
+<body class="body">
+    <div class="descripcion">
+        <p>Este es un portal donde podrás guardar todos tus archivos,
+            tanto musica, fotos o videos de forma gratuita y segura.
+        </p>
+        <a href="/login" class="btn btn-light">
+            <span class="fa fa-user">Iniciar sesion</span>
+        </a>
+        <a href="/signup" class="btn btn-light">
+            <span class="fa fa-user">Registrarse</span>
+        </a>
     </div>
     <footer id="main-footer">
         <p>Copyright &copy;2021 | Designed by <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>

@@ -3,7 +3,14 @@
 
 <head>
     <%- include('partials/head'); %>
-    <title>Registro</title>
+        <header>
+            <div class="image">
+                <a href="/" , title="Inicio">
+                    <img src="/img/Logo_Mysky_Javi.png" alt="Inicio" width="140" height="100">
+                </a>
+            </div>
+        </header>
+        <title>Registro</title>
 </head>
 
 <body class="signup">
@@ -18,29 +25,29 @@
                 <div class="card-body">
                     <h1 class="text-center"><span class="fa fa-sign-in"></span>Registro</h1>
 
-                    <% if (message.lenght > 0) { %> 
-                    <div class="alert alert-danger">
-                        <%= message %> 
-                    </div>
-                    <% } %> 
-                    <form action="/signup" method="POST">
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="email" required="required"
-                                class="form-control"></input>
+                    <% if (message.lenght> 0) { %>
+                        <div class="alert alert-danger">
+                            <%= message %>
                         </div>
-                        <div class="form-group">
-                            <input type="password" name="password" placeholder="Contraseña" required="required"
-                                class="form-control"></input>
-                        </div>
-                        <div style="text-align:center;">
-                            <input type="submit" value="Aceptar" class="btn btn-dark btn-lg">
-                        </div>
-                    </form>
-                    <hr>
-                    <div class="text-center">
-                        <p>¿Tienes ya una cuenta? <a href="/login">Inicia sesion</a></p>
-                        <p>Volver a <a href="/">inicio</a></p>
-                    </div>
+                        <% } %>
+                            <form action="/signup" method="POST">
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="email" required="required"
+                                        class="form-control"></input>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" placeholder="Contraseña" required="required"
+                                        class="form-control"></input>
+                                </div>
+                                <div style="text-align:center;">
+                                    <input type="submit" value="Aceptar" class="btn btn-dark btn-lg">
+                                </div>
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <p>¿Tienes ya una cuenta? <a href="/login">Inicia sesion</a></p>
+                                <p>Volver a <a href="/">inicio</a></p>
+                            </div>
                 </div>
             </div>
         </div>
