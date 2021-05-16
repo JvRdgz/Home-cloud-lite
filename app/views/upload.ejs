@@ -5,13 +5,13 @@
 	<%- include('partials/head'); %>
 		<div class="imageheader">
 			<a href="/profile" title="Perfil">
-				<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="140" height="100">
+				<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
 			</a>
 		</div>
 		<form action="/logout" method="GET">
 			<div class="logout">
 				<div style="text-align:center;">
-					<input type="submit" value="Cerrar sesion" class="btn btn-dark btn-lg">
+					<input type="submit" value="Cerrar sesion" class="button">
 				</div>
 			</div>
 		</form>
@@ -21,10 +21,14 @@
 <body class="profile">
 	<br><br><br><br>
 	<center>
-		<h1>Archivo subido correctamente!</h1><br><br>
+		<tr>
+			<td>
+				<h1 class="texto">Archivo subido correctamente!</h1><br><br>
+			</td>
+		</tr>
 		<div class="volver">
 			<div style="text-align:center;">
-				<a href="/profile" class="btn btn-dark btn-lg">
+				<a href="/profile" class="button">
 					<span class="fa fa-user">Volver</span>
 				</a>
 			</div>
@@ -32,7 +36,7 @@
 	</center>
 	<br><br><br>
 	<footer id="main-footer">
-		<p>Copyright &copy;2021 | Designed by <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
+		<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
 	</footer>
 </body>
 

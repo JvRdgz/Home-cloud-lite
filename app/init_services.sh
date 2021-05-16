@@ -15,5 +15,5 @@ npm i
 # mongo "mongodb+srv://mysky.ragmu.mongodb.net/mysky" --username usuario-JR
 
 # Ejecución del software
-node server.js
+node src/server.js
 # pm2 start server.js

@@ -11,8 +11,8 @@ module.exports = (app, passport) => {
 		});
 	});
 
-	app.get("/files", (req, res) => {
-		res.render('files');
+	app.get("/upload", (req, res) => {
+		res.render('upload');
 	});
 
 	app.post('/login', passport.authenticate('local-login', {
