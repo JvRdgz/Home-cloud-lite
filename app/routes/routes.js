@@ -11,11 +11,15 @@ module.exports = (app, passport) => {
 		});
 	});
 
+	app.get("/files", (req, res) => {
+		res.render('files');
+	});
+
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/profile',
 		failureRedirect: '/login',
 		failureFlash: true
-	}))
+	}));
 
 	app.get('/signup', (req, res) => {
 		res.render('signup', {
@@ -35,13 +39,32 @@ module.exports = (app, passport) => {
 		});
 	});
 
+	app.get('/fotos', isLoggedIn, (req, res) => {
+		res.render('fotos', {
+			user: req.user
+		});
+	});
+
+	app.get('/videos', isLoggedIn, (req, res) => {
+		res.render('videos', {
+			user: req.user
+		});
+	});
+
+	app.get('/musica', isLoggedIn, (req, res) => {
+		res.render('musica', {
+			user: req.user
+		});
+	});
+
 	app.get('/logout', (req, res) => {
 		req.logout();
 		res.redirect('/');
 	});
+
 };
 
 function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated()) {return next();}
+	if (req.isAuthenticated()) { return next(); }
 	return res.redirect('/');
-}
+};

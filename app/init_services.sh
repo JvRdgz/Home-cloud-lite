@@ -7,7 +7,8 @@
 npm i
 
 # Encender servicio mongodb
-systemctl start mongodb
+# systemctl start mongodb
+# service mongod start
 
 # Ejecucion del servicio de mongodb de nuestra base de datos
 # PARA CONECTAR CON EL CLUSTER USANDO EL MONGO SHELL. (DESDE EL TERMINAL) ===> COMANDO PARA EL TERMINAL:

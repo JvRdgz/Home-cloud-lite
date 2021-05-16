@@ -8,18 +8,21 @@
 	- Body-parser => Procesar informacion que nos llega desde el servidor
 	- Connect-flash => Para mandar mensajes que se almacenan en el navegador, cuando el usuario ha cometido algun error al logearse...
 	- Bcrypt-nodejs => Cifrado de datos
-	- Multer
-	- Path
+	- Multer => Multer nos ayuda a gestionar el formato del fichero de nuestro server.
+	- Path => Gestion de rutas del proyecto
 	- Morgan => Administrar las peticiones http.
-	- fs
-	- react
-	- react-dom
+	- fs => Gestion de ficheros
 	- mongoose => Modulo para conectarnos a MongoDB
 	- passport => Atuenticarte con cuentas de google/facebook/twitter, etc
 	- passport-local
 	- ejs
+	- method-override => Peticiones PUT
+	//// DEPENDENCIAS DE DESARROLLO:
+	- dotenv => Para poder utilizar variables de entorno
+	- npm-check-updates => Busca nuevas actualizaciones de los modulos instalados
 
-	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional
+	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional method-override
+	=> npm i dotenv npm-check-updates -D
 
 4º- Creamos una carpeta /upload que es donde se va a guardar el contenido que queramos subir.
 	=> mkdir upload
@@ -66,3 +69,8 @@
 13º- Entorno de produccion:
 	- https://www.youtube.com/watch?v=dr-vDIOw2As => Heroku con mongodb
 	- https://www.youtube.com/watch?v=A7CJd7q4yeM => Variables de entorno.
+
+14º- Operaciones CRUD: https://www.youtube.com/playlist?list=PLo5lAe9kQrwqUEXK7oQbzv63KsdODzuAy
+
+15º- De cara al desarrollo, he creado un script en el package.json para poder ejecutar en desarrollo la aplicacion
+	con el comando npm run dev.

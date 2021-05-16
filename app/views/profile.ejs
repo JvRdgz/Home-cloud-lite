@@ -1,113 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include('partials/head'); %>
-    <header>
-        <div class="image">
-            <a href="/" , title="Inicio">
-                <img src="/img/Logo_Mysky_Javi.png" alt="Inicio" width="140" height="100">
-            </a>
-        </div>
-    </header>
-    <link rel="stylesheet" href="css/style3.css">
-    <title>MySky Cloud</title>
+	<%- include('partials/head'); %>
+		<div class="imageheader">
+			<a href="/profile" title="Perfil">
+				<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="140" height="100">
+			</a>
+		</div>
+		<form action="/logout" method="GET">
+			<div class="logout">
+				<div style="text-align:center;">
+					<input type="submit" value="Cerrar sesion" class="btn btn-dark btn-lg">
+				</div>
+			</div>
+		</form>
+		<title>Profile</title>
 </head>
-<body>
-    
-        <!--<div class="overlay">
-    <h1>MySky</h1>
-        <br>
-        <form action="readmore.html">
-        <button>READ MORE</button>
-            </div>-->
-        <!-- HACER LOS FORMULARIOS BONITOS -->
-        </form>
-        <br>
-        
-        <header id="main-header">
-		
-            <a id="logo-header" href="#">
-                <span class="site-name">FranciscoAMK</span>
-                <span class="site-desc">Diseño web / WordPress / Tutoriales</span>
-            </a> <!-- / #logo-header -->
-    
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav><!-- / nav -->
-    
-        </header><!-- / #main-header -->
-    <br><br><br>
-    <table class="archivos">
-        <tr>
-            <td class="celda">
-                <form action="musica.html">
-                    
-                    <button class="boton1">Mi MUSICA</button>
-                </form>
-            </td>
-            <td class="celda">
-                <form action="fotos.html">
-                    <button class="boton2">FOTOS</button>
 
-                </form>
-            </td>
-            <td class="celda">
-                <form action="videos.html">
-                    <button class="boton3">VIDEOS</button>
+<body class="profile">
+	<br><br><br>
+	<center>
+		<table>
+			<tr>
+				<div class="avatar" style="background-image: url(img/avatar-hombre.jpg)"></div>
+			</tr>
+			<tr>
+				<td>
+					<h2>Bienvenido, "USERNAME"</h2>
+				</td>
+			</tr>
+		</table>
+	</center>
+	<br><br><br>
+	<center>
+		<table>
+			<tr>
+			<tr>
+				<td>
+					<a href="/fotos">
+						<div class="iconos" style="background-image: url(img/fotos.png)"></div>
+					</a>
+				</td>
+				<td>
+					<a href="/videos">
+						<div class="iconos" style="background-image: url(img/videos.png)"></div>
+					</a>
+				</td>
+				<td>
+					<a href="/musica">
+						<div class="iconos" style="background-image: url(img/musica.png)"></div>
+					</a>
+				</td>
+			</tr>
+			</tr>
+			<tr>
+				<td WIDTH="100" HEIGHT="100">
+					<h1>Fotos</h1>
+				</td>
+				<td WIDTH="100" HEIGHT="100">
+					<h1>Videos</h1>
+				</td>
+				<td WIDTH="100" HEIGHT="100">
+					<h1>Musica</h1>
+				</td>
 
-                </form>
-            </td>
-        </tr>
-    </table>
-
-    <body>
-	
-        <header id="main-header">
-            
-            <a id="logo-header" href="#">
-                <span class="site-name">FranciscoAMK</span>
-                <span class="site-desc">Diseño web / WordPress / Tutoriales</span>
-            </a> <!-- / #logo-header -->
-    
-            <nav>
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Acerca de</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav><!-- / nav -->
-    
-        </header><!-- / #main-header -->
-    
-        
-        <section id="main-content">
-        
-            <article>
-                <header>
-                    <h1>Esta es una página con cabecera fija</h1>
-                </header>
-                
-                <img src="http://placekitten.com/800/250" alt="Gatito" />
-                
-                <div class="content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    
-                </div>
-                
-            </article> <!-- /article -->
-        
-        </section> <!-- / #main-content -->
-
-    <footer id="main-footer">
-        <p>&copy; 2014 <a href="http://FranciscoAMK.com">FranciscoAMK.com</a></p>
-    </footer><!-- / #main-footer -->
+			</tr>
+		</table>
+	</center>
+	<br><br><br>
+	<footer id="main-footer">
+		<p>Copyright &copy;2021 | Designed by <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
+	</footer>
 </body>
+
 </html>
