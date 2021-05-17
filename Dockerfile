@@ -57,13 +57,12 @@ RUN 	apt install -y nodejs npm
 # Instalacion de dependencias necesarias para la aplicacion.
 RUN		npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional method-override dotenv mkdirp
 
-# Instalacion de P2M para ejecutar demonios dentro de la app
-RUN		npm install pm2@latest -g
 
 # Instalacion de MongoDB
-# RUN		wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
-RUN		wget https://www.mongodb.org/static/pgp/server-4.4.asc -qO- | apt-key add -
-RUN		echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" >> /etc/apt/sources.list.d/mongodb-org.list
+RUN		wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
+# RUN		wget https://www.mongodb.org/static/pgp/server-4.4.asc -qO- | apt-key add -
+RUN		echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" >> /etc/apt/sources.list.d/mongodb-org-4.4.list
+
 RUN		apt update
 # RUN		apt --update add mongodb mongodb-tools
 # RUN		mkdir -p /data/db
@@ -99,4 +98,5 @@ COPY	./app ./
 EXPOSE 3000
 
 # Ejecutar el comando para levantarla en local.
-CMD bash init_services.sh
+# CMD bash init_services.sh
+CMD [ "bash" ]

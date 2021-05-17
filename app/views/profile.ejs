@@ -15,22 +15,20 @@
 				</div>
 			</div>
 		</form>
+		<form action="/files" method="GET">
+			<div class="logout">
+				<div style="text-align:center;">
+					<input type="submit" value="Ver archivos guardados" class="button">
+				</div>
+			</div>
+		</form>
 		<title>Profile</title>
 </head>
 
 <body class="profile">
-	<br><br><br>
+	<br>
 	<center>
-		<table>
-			<!-- <tr>
-				<div class="avatar" style="background-image: url(img/avatar-hombre.jpg)"></div>
-			</tr> -->
-			<tr>
-				<td>
-					<h1 class="texto">Bienvenido</h1>
-				</td>
-			</tr>
-		</table>
+		<h1 class="texto">Bienvenido</h1>
 	</center>
 	<br><br><br>
 	<center>
@@ -38,8 +36,9 @@
 			<p>Seleccione los archivos que quiere subir al servidor.
 			</p><br><br>
 			<form action="/upload" enctype="multipart/form-data" method="POST">
-				<input type="file" name="avatar" value="Subir" multiple>
-				<input type="submit" value="Subir">
+				<input type="file" name="avatar" value="Subir" multiple />
+				<input type="submit" value="Subir" /><br><br>
+				<input type="reset" value="Cancelar" />
 			</form>
 		</div>
 	</center>

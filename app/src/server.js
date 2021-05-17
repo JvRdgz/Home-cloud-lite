@@ -77,10 +77,6 @@ app.use(flash());
 const routesRoute = path.join(__dirname, "..", "routes", "routes.js");
 require(routesRoute)(app, passport);
 
-const fileRoutesRoute = path.join(__dirname, "..", "routes", "fileRoutes.js");
-const initFileRoute = require(fileRoutesRoute);
-initFileRoute(app);
-
 // SUBIDA DE ARCHIVOS AL SERVIDOR
 fs.readdir(path.join(__dirname, "..", "uploads"), function (err, files) {
 	if (err) {
@@ -92,17 +88,6 @@ fs.readdir(path.join(__dirname, "..", "uploads"), function (err, files) {
 	else
 		console.log(files);
 });
-
-/*
-const mime = {
-	'html' : 'text/html',
-	'css'  : 'text/css',
-	'jpg'  : 'image/jpg',
-	'ico'  : 'image/x-icon',
-	'mp3'  :'audio/mpeg3',
-	'mp4'  : 'video/mp4'
- };
-*/
 
 // req: informacion de la peticion
 // file: archivo que se esta subiendo
@@ -121,18 +106,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 // en el upload.single('...'), ahi dentro tiene que coincidir con el nombre
 // del formulario donde se indica el name=""
-app.post("/upload", upload.array('avatar', 12), (req, res, next) => {
-	let file = req.files;
-	if (req.file == undefined) {
-		return res.redirect('/error');
-	}
-	/*
-	if (!file)
-		return res.status(400).send({ message: "Please upload a file!" });
-	*/
-	else
-		res.redirect('/upload');
-});
+app.post("/upload", upload.array('avatar'), (req, res, next) => { res.redirect('/upload') });
 app.listen(app.get('port'), () => {
 	console.log('Server is up on port: ', app.get('port'))
 });

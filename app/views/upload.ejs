@@ -8,13 +8,13 @@
 				<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
 			</a>
 		</div>
-		<form action="/logout" method="GET">
+		<!-- <form action="/logout" method="GET">
 			<div class="logout">
 				<div style="text-align:center;">
 					<input type="submit" value="Cerrar sesion" class="button">
 				</div>
 			</div>
-		</form>
+		</form> -->
 		<title>Archivo subido</title>
 </head>
 
@@ -23,16 +23,19 @@
 	<center>
 		<tr>
 			<td>
-				<h1 class="texto">Archivo subido correctamente!</h1><br><br>
+				<h1 class="texto">GUARDADO CON EXITO!</h1><br><br>
 			</td>
 		</tr>
-		<div class="volver">
+		<script>
+			setTimeout('history.back()',2000);
+		</script>
+		<!-- <div class="volver">
 			<div style="text-align:center;">
 				<a href="/profile" class="button">
 					<span class="fa fa-user">Volver</span>
 				</a>
 			</div>
-		</div>
+		</div> -->
 	</center>
 	<br><br><br>
 	<footer id="main-footer">

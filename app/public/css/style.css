@@ -195,6 +195,7 @@ div.iconos {
 }
 
 h1.texto {
+	text-align: center;
 	width: auto;
 	margin-top: 12%;
 }

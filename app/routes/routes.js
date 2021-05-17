@@ -1,3 +1,9 @@
+const express = require("express");
+const path = require('path');
+const router = express.Router();
+const controllerRoute = path.join(__dirname, "..", "controllers", "file.controller");
+const controller = require(controllerRoute);
+
 module.exports = (app, passport) => {
 
 	// const indexRoute = path.join(__dirname, "views", "index.ejs");
@@ -5,17 +11,20 @@ module.exports = (app, passport) => {
 		res.render('index');
 	});
 
+	app.get("/files", isLoggedIn, controller.getListFiles);
+	app.get("/files/:name", isLoggedIn, controller.download);
+
 	app.get('/login', (req, res) => {
 		res.render('login', {
 			message: req.flash('loginMessage')
 		});
 	});
 
-	app.get("/upload", (req, res) => {
+	app.get("/upload", isLoggedIn, (req, res) => {
 		res.render('upload');
 	});
 
-	app.get("/error", (req, res) => {
+	app.get("/error", isLoggedIn, (req, res) => {
 		res.render('error');
 	});
 
@@ -43,22 +52,8 @@ module.exports = (app, passport) => {
 		});
 	});
 
-	app.get('/fotos', isLoggedIn, (req, res) => {
-		res.render('fotos', {
-			user: req.user
-		});
-	});
-
-	app.get('/videos', isLoggedIn, (req, res) => {
-		res.render('videos', {
-			user: req.user
-		});
-	});
-
-	app.get('/musica', isLoggedIn, (req, res) => {
-		res.render('musica', {
-			user: req.user
-		});
+	app.get("/info", (req, res) => {
+		res.render('info');
 	});
 
 	app.get('/logout', (req, res) => {
