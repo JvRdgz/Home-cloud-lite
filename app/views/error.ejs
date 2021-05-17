@@ -15,42 +15,28 @@
 				</div>
 			</div>
 		</form>
-		<title>Fotos</title>
+		<title>Error</title>
 </head>
 
 <body class="profile">
-	<br><br><br>
-	<center>
-		<table>
-			<tr>
-				<div class="avatar" style="background-image: url(img/fotos.png)"></div>
-			</tr>
-			<tr>
-				<td>
-					<h2>Fotos</h2>
-				</td>
-			</tr>
-		</table>
-	</center>
 	<br><br><br><br>
 	<center>
-		<table>
+		<tr>
 			<td>
-				<tr>
-					<form action="/upload" enctype="multipart/form-data" method="POST">
-						<input type="file" name="avatar" value="Subir" multiple><br><br>
-						<input class="button" type="submit" value="Subir">
-					</form><br><br><br>
-					<div class="volver">
-						<div style="text-align:center;">
-							<a href="/profile">
-								<span class="button">Volver</span>
-							</a>
-						</div>
-					</div>
-				</tr>
+				<h1 class="texto">ERROR</h1><br><br>
+				<div class="descripcion">
+					<p>No has seleccionado ningun archivo.
+					</p><br><br>
+				</div>
 			</td>
-		</table>
+		</tr>
+		<div class="volver">
+			<div style="text-align:center;">
+				<a href="/profile" class="button">
+					<span class="fa fa-user">Volver</span>
+				</a>
+			</div>
+		</div>
 	</center>
 	<br><br><br>
 	<footer id="main-footer">

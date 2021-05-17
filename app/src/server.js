@@ -114,54 +114,22 @@ const storage = multer.diskStorage({
 		// Aqui se va a crear un nombre para nuestro fichero.
 		// El nombre se puede modificar, pero el nombre por defecto
 		// nunca se va repetir.
-		cb(null, Date.now() + path.extname(file.originalname));
-	}
-});
-/*
-const storageImg = multer.diskStorage({
-	destination: path.join(__dirname, "..", "uploads", "img"),
-	filename: function (req, file, cb) {
-		// Aqui se va a crear un nombre para nuestro fichero.
-		// El nombre se puede modificar, pero el nombre por defecto
-		// nunca se va repetir.
-		cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
+		cb(null, Date.now() + file.originalname);
 	}
 });
 
-const storageVideo = multer.diskStorage({
-	destination: path.join(__dirname, "..", "uploads", "videos"),
-	filename: function (req, file, cb) {
-		// Aqui se va a crear un nombre para nuestro fichero.
-		// El nombre se puede modificar, pero el nombre por defecto
-		// nunca se va repetir.
-		cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-	}
-});
-
-const storageMusic = multer.diskStorage({
-	destination: path.join(__dirname, "..", "uploads", "music"),
-	filename: function (req, file, cb) {
-		// Aqui se va a crear un nombre para nuestro fichero.
-		// El nombre se puede modificar, pero el nombre por defecto
-		// nunca se va repetir.
-		cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
-	}
-});
-
-const uploadImg = multer({ storage: storageImg });
-const uploadVideo = multer({ storage: storageVideo });
-const uploadMusic = multer({ storage: storageMusic });
-*/
 const upload = multer({ storage: storage });
 // en el upload.single('...'), ahi dentro tiene que coincidir con el nombre
 // del formulario donde se indica el name=""
 app.post("/upload", upload.array('avatar', 12), (req, res, next) => {
 	let file = req.files;
-	// if (req.file == undefined) {
-	// 	return res.status(400).send({ message: "Please upload a file!" });
-	// }
+	if (req.file == undefined) {
+		return res.redirect('/error');
+	}
+	/*
 	if (!file)
 		return res.status(400).send({ message: "Please upload a file!" });
+	*/
 	else
 		res.redirect('/upload');
 });

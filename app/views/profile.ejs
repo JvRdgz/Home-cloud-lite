@@ -34,39 +34,14 @@
 	</center>
 	<br><br><br>
 	<center>
-		<table>
-			<tr>
-			<tr>
-				<td>
-					<a href="/fotos">
-						<div class="iconos" style="background-image: url(img/fotos.png)"></div>
-					</a>
-				</td>
-				<td>
-					<a href="/videos">
-						<div class="iconos" style="background-image: url(img/videos.png)"></div>
-					</a>
-				</td>
-				<td>
-					<a href="/musica">
-						<div class="iconos" style="background-image: url(img/musica.png)"></div>
-					</a>
-				</td>
-			</tr>
-			</tr>
-			<tr>
-				<td class="icon">
-					<h1 class="texto">Fotos</h1>
-				</td>
-				<td class="icon">
-					<h1 class="texto">Videos</h1>
-				</td>
-				<td class="icon">
-					<h1 class="texto">Musica</h1>
-				</td>
-
-			</tr>
-		</table>
+		<div class="descripcion">
+			<p>Seleccione los archivos que quiere subir al servidor.
+			</p><br><br>
+			<form action="/upload" enctype="multipart/form-data" method="POST">
+				<input type="file" name="avatar" value="Subir" multiple>
+				<input type="submit" value="Subir">
+			</form>
+		</div>
 	</center>
 	<br><br><br>
 	<footer id="main-footer">

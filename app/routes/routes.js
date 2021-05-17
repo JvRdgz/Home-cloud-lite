@@ -15,6 +15,10 @@ module.exports = (app, passport) => {
 		res.render('upload');
 	});
 
+	app.get("/error", (req, res) => {
+		res.render('error');
+	});
+
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/profile',
 		failureRedirect: '/login',

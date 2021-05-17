@@ -17,11 +17,12 @@
 	- passport-local
 	- ejs
 	- method-override => Peticiones PUT
+	- mkdirp => Para crear directorios
 	//// DEPENDENCIAS DE DESARROLLO:
 	- dotenv => Para poder utilizar variables de entorno
 	- npm-check-updates => Busca nuevas actualizaciones de los modulos instalados
 
-	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional method-override
+	=> npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional method-override mkdirp
 	=> npm i dotenv npm-check-updates -D
 
 4º- Creamos una carpeta /upload que es donde se va a guardar el contenido que queramos subir.

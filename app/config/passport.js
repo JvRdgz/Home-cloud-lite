@@ -1,5 +1,6 @@
 // Dependencia para el uso de rutas.
 const path = require('path');
+// const mkdirp = require('mkdirp');
 // Registro de usuario Local
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -36,6 +37,11 @@ module.exports = function (passport) {
 				} else {
 					var newUser = new User();
 					newUser.local.email = email;
+					// const initusername = newUser.local.email;
+					// let indice = initusername.indexOf("@");
+					// const finalusername = initusername.substring(0, indice);
+					// const dir = path.join(__dirname, "..", finalusername);
+					// mkdirp(dir);
 					newUser.local.password = newUser.generateHash(password);
 					newUser.save(function (err) {
 						if (err) { throw err; }
