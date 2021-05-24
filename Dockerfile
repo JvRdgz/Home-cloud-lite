@@ -33,7 +33,7 @@ RUN		apt install -y vim wget systemd nodejs npm
 ##################################################################
 
 # Instalacion de dependencias necesarias para la aplicacion.
-RUN		npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs react react-dom mime-types mongoose passport body-parser passport-local ejs require-optional method-override dotenv mkdirp
+RUN		npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs mime-types mongoose passport body-parser passport-local ejs require-optional method-override dotenv mkdirp pm2@latest
 ##################################################################
 ########################### MONGODB ##############################
 ##################################################################

@@ -37,6 +37,7 @@ const session = require('express-session');
 // Variable PORT coge por defecto el puerto de la variable de entorno.
 // En caso contrario coge el puerto 3000.
 app.set('port', process.env.PORT || 3000);
+app.set('host', process.env.HOST || '0.0.0.0');
 app.set('views', path.join(__dirname, "..", 'views'));
 // Motor de plantillas.
 app.set('view engine', 'ejs');
@@ -107,6 +108,7 @@ const upload = multer({ storage: storage });
 // en el upload.single('...'), ahi dentro tiene que coincidir con el nombre
 // del formulario donde se indica el name=""
 app.post("/upload", upload.array('avatar'), (req, res, next) => { res.redirect('/upload') });
-app.listen(app.get('port'), () => {
-	console.log('Server is up on port: ', app.get('port'))
+
+app.listen(app.get('port'), app.get('host'), () => {
+	console.log('Server is up on port: ', app.get('port'), ' on host: ', app.get('host'));
 });
