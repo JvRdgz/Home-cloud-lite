@@ -109,6 +109,10 @@ const upload = multer({ storage: storage });
 // del formulario donde se indica el name=""
 app.post("/upload", upload.array('avatar'), (req, res, next) => { res.redirect('/upload') });
 
+app.use(function(req, res, next){
+    res.status(404).render('404', {title: "Sorry, page not found"});
+});
+
 app.listen(app.get('port'), app.get('host'), () => {
 	console.log('Server is up on port: ', app.get('port'), ' on host: ', app.get('host'));
 });

@@ -11,7 +11,13 @@ module.exports = (app, passport) => {
 		res.render('index');
 	});
 
-	app.get("/files", isLoggedIn, controller.getListFiles);
+	app.get("/404", (req, res) => {
+		res.render("404");
+	});
+
+	app.get("/files", isLoggedIn, controller.getListFiles, (req, res) => {
+		res.render('files');
+	});
 	app.get("/files/:name", isLoggedIn, controller.download);
 
 	app.get('/login', (req, res) => {
@@ -19,6 +25,18 @@ module.exports = (app, passport) => {
 			message: req.flash('loginMessage')
 		});
 	});
+
+	/*
+	app.get('/login', (req, res) => {
+		if (res.status(404))
+			res.redirect('/404');
+		else {
+			res.render('login', {
+				message: req.flash('loginMessage')
+			});
+		}
+	});
+	*/
 
 	app.get("/upload", isLoggedIn, (req, res) => {
 		res.render('upload');
@@ -67,3 +85,11 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) { return next(); }
 	return res.redirect('/');
 };
+/*
+function errorCase(req, res, next) {
+	if (res.status(404))
+		res.redirect('/404');
+	else
+		return next();
+};
+*/
