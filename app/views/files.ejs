@@ -3,39 +3,32 @@
 
 <head>
 	<%- include('partials/head'); %>
-		<div class="imageheader">
-			<a href="/profile" title="Perfil">
-				<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
-			</a>
-		</div>
-		<form action="/logout" method="GET">
-			<div class="logout">
-				<div style="text-align:center;">
-					<input type="submit" value="Cerrar sesion" class="button">
-				</div>
+		<nav>
+			<div class="imageheader">
+				<a href="/profile" title="Perfil">
+					<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
+				</a>
 			</div>
-		</form>
-		<title>Error</title>
+			<form action="/logout" method="GET">
+				<div class="logout">
+					<div style="text-align:center;">
+						<input type="submit" value="Cerrar sesion" class="button">
+					</div>
+				</div>
+			</form>
+			<div class="texto">Mis archivos</div>
+			<title>Mis archivos</title>
+			<script type="text/javascript" src="/js/showFiles.js"></script>
+		</nav>
 </head>
 
 <body class="profile">
-	<br><br><br><br>
-	<center>
-		<tr>
-			<td>
-				<h1 class="texto">FICHEROS</h1><br><br>
-			</td>
-		</tr>
-		<div class="volver">
-			<div style="text-align:center;">
-				<a href="/profile" class="button">
-					<span class="fa fa-user">Volver</span>
-				</a>
-			</div>
+	<div class="volver">
+		<div style="text-align:center;">
+			<a href="/profile" class="button">Volver</a>
 		</div>
-	</center>
-	<br><br><br>
-	<footer id="main-footer">
+	</div>
+	<footer>
 		<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
 	</footer>
 </body>

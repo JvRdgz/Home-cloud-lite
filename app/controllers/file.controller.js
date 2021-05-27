@@ -21,7 +21,8 @@ const getListFiles = (req, res) => {
 			});
 		});
 
-		res.status(200).send(fileInfos);
+		res.status(200).render("files");
+		// res.status(200).send(fileInfos);
 	});
 };
 

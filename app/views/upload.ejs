@@ -3,42 +3,41 @@
 
 <head>
 	<%- include('partials/head'); %>
-		<div class="imageheader">
-			<a href="/profile" title="Perfil">
-				<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
-			</a>
-		</div>
-		<!-- <form action="/logout" method="GET">
-			<div class="logout">
-				<div style="text-align:center;">
-					<input type="submit" value="Cerrar sesion" class="button">
-				</div>
+		<nav>
+			<div class="imageheader">
+				<a href="/profile" title="Perfil">
+					<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
+				</a>
 			</div>
-		</form> -->
-		<title>Archivo subido</title>
+			<form action="/logout" method="GET">
+				<div class="logout">
+					<div style="text-align:center;">
+						<input type="submit" value="Cerrar sesion" class="button">
+					</div>
+				</div>
+			</form>
+			<div class="texto">Cargar archivos</div>
+			<title>Error</title>
+		</nav>
 </head>
 
 <body class="profile">
-	<br><br><br><br>
-	<center>
-		<tr>
-			<td>
-				<h1 class="texto">GUARDADO CON EXITO!</h1><br><br>
-			</td>
-		</tr>
-		<script>
-			setTimeout('history.back()',2000);
-		</script>
-		<!-- <div class="volver">
-			<div style="text-align:center;">
-				<a href="/profile" class="button">
-					<span class="fa fa-user">Volver</span>
-				</a>
-			</div>
-		</div> -->
-	</center>
-	<br><br><br>
-	<footer id="main-footer">
+
+	<div class="descripcion">
+		<p>Seleccione los archivos que quiere subir al servidor.
+		</p><br><br>
+		<form action="/save" enctype="multipart/form-data" method="POST">
+			<input type="file" name="avatar" value="Subir" multiple />
+			<input type="submit" value="Subir" /><br><br>
+			<input type="reset" value="Cancelar" />
+		</form>
+	</div><br><br><br>
+	<div class="volver">
+		<div style="text-align:center;">
+			<a href="/profile" class="button">Volver</a>
+		</div>
+	</div>
+	<footer>
 		<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
 	</footer>
 </body>

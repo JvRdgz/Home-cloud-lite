@@ -38,6 +38,10 @@ module.exports = (app, passport) => {
 	});
 	*/
 
+	app.get("/save", isLoggedIn, (req, res) => {
+		res.render('save');
+	});
+
 	app.get("/upload", isLoggedIn, (req, res) => {
 		res.render('upload');
 	});

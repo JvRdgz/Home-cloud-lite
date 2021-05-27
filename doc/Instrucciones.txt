@@ -79,7 +79,8 @@
 
 
 
-
+15º- Gestion de archivos en el front: Creamos un directorio /js dentro de /public donde alojaremos todos nuestros
+	archivos javaScript que se conectan con las vistas. Creamos un archivo files.js.
 
 15º- De cara al desarrollo, he creado un script en el package.json para poder ejecutar en desarrollo la aplicacion
 	con el comando npm run dev.

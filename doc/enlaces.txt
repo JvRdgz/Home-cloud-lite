@@ -26,3 +26,17 @@ https://www.youtube.com/watch?v=o_cDpiDDJD0
 
 Instalacion de MongoDB
 https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-20-04-es
+
+Imagenes en front
+https://www.youtube.com/watch?v=gXdEdauvW0M
+https://www.youtube.com/watch?v=jP2DNQyOE90
+
+Tablas
+https://www.hazunaweb.com/curso-de-html/tablas/
+
+Mostrar array en front
+https://es.stackoverflow.com/questions/49936/c%C3%B3mo-imprimir-desde-javascript-a-html-el-contenido-de-un-array-con-varios-valore
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+
+Iconos
+https://icon-icons.com/
