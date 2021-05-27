@@ -17,7 +17,7 @@
 				</div>
 			</form>
 			<div class="texto">Cargar archivos</div>
-			<title>Error</title>
+			<title>Subir archivos</title>
 		</nav>
 </head>
 
@@ -26,7 +26,7 @@
 	<div class="descripcion">
 		<p>Seleccione los archivos que quiere subir al servidor.
 		</p><br><br>
-		<form action="/save" enctype="multipart/form-data" method="POST">
+		<form action="/upload" enctype="multipart/form-data" method="POST">
 			<input type="file" name="avatar" value="Subir" multiple />
 			<input type="submit" value="Subir" /><br><br>
 			<input type="reset" value="Cancelar" />

@@ -107,7 +107,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 // en el upload.single('...'), ahi dentro tiene que coincidir con el nombre
 // del formulario donde se indica el name=""
-app.post("/upload", upload.array('avatar'), (req, res, next) => { res.redirect('/upload') });
+app.post("/upload", upload.array('avatar'), (req, res, next) => { res.redirect('/save') });
 
 app.use(function(req, res, next){
     res.status(404).render('404', {title: "Sorry, page not found"});
