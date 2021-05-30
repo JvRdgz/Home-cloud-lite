@@ -1,5 +1,16 @@
 console.log('Estoy en files.js');
 
+const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
+
+const request = new XMLHttpRequest();
+
+request.open('GET', requestURL);
+
+
+
+
+
+/*
 const imagePreview = document.getElementById("img-preview");
 const imageUploader = document.getElementById('img-uploader');
 const imageUploadbar = document.getElementById('img-upload-bar');
@@ -51,3 +62,4 @@ const download = (req, res) => {
 		}
 	});
 };
+*/
