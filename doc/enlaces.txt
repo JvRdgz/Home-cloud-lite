@@ -40,3 +40,13 @@ https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/JS
 
 Iconos
 https://icon-icons.com/
+
+Listar archivos de una carpeta
+https://www.irt.org/articles/js014/index.htm
+
+Leer archivos JSON y pintarlos en una tablas
+https://www.youtube.com/watch?v=M4LaQ3KUGOM
+https://developer.mozilla.org/es/docs/Learn/JavaScript/Objects/JSON
+
+Libreria Anxios
+https://desarrolloweb.com/articulos/axios-ajax-cliente-http-javascript.html

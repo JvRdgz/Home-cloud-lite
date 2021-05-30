@@ -1,6 +1,4 @@
-console.log('Estoy en files.js');
-
-const imagePreview = document.getElementById("img-preview");
+const imagePreview = document.getElementById('img-preview');
 const imageUploader = document.getElementById('img-uploader');
 const imageUploadbar = document.getElementById('img-upload-bar');
 
@@ -15,7 +13,7 @@ imageUploader.addEventListener('change', async (e) => {
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
     // Send to cloudianry
-    const res = await axios.get(
+    const res = await axios.post(
         CLOUDINARY_URL,
         formData,
         {
@@ -32,22 +30,3 @@ imageUploader.addEventListener('change', async (e) => {
     console.log(res);
     imagePreview.src = res.data.secure_url;
 });
-
-
-
-
-
-
-
-const download = (req, res) => {
-	const fileName = req.params.name;
-	const directoryPath = path.join(__dirname, "..", "uploads");
-
-	res.download(directoryPath + fileName, fileName, (err) => {
-		if (err) {
-			res.status(500).send({
-				message: "Error al descargar el archivo. " + err,
-			});
-		}
-	});
-};

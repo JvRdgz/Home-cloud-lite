@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
-// Para manejar variables de entorno
-const dotenv = require('dotenv');
 
 // const { MYSKY_MONGODB_HOST, MYSKY_MONGODB_DATABASE } = process.env;
 
 // const mongoUri = `mongodb://${MYSKY_MONGODB_HOST}/${MYSKY_MONGODB_DATABASE}`
 // mongodb+srv://<username>:<password>@mysky.ragmu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-mongoose.connect("mongodb://localhost:27017/mysky", {
+mongoose.connect(process.env.DB_URL_LOCAL, {
 // mongoose.connect(mongoUri, {
 	// Para eliminar el mensaje de la consola
 	// useMongoClient: true,

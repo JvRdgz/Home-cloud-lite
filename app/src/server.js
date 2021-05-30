@@ -3,7 +3,7 @@
  */
 
 // Para manejar variables de entorno
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config();
 
 // Importamos express
 const express = require('express');
@@ -39,6 +39,7 @@ const session = require('express-session');
 app.set('port', process.env.PORT || 3000);
 app.set('host', process.env.HOST || '0.0.0.0');
 app.set('views', path.join(__dirname, "..", 'views'));
+
 // Motor de plantillas.
 app.set('view engine', 'ejs');
 
@@ -79,7 +80,13 @@ const routesRoute = path.join(__dirname, "..", "routes", "routes.js");
 require(routesRoute)(app, passport);
 
 // SUBIDA DE ARCHIVOS AL SERVIDOR
-fs.readdir(path.join(__dirname, "..", "uploads"), function (err, files) {
+
+var dir = path.join(__dirname, "..", "uploads");
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+fs.readdir(dir, function (err, files) {
 	if (err) {
 		onerror(err);
 		return;
@@ -95,7 +102,7 @@ fs.readdir(path.join(__dirname, "..", "uploads"), function (err, files) {
 // cb: aquello que se va a llamar cuando esta funcion termine.
 
 const storage = multer.diskStorage({
-	destination: path.join(__dirname, "..", "uploads"),
+	destination: dir,
 	filename: function (req, file, cb) {
 		// Aqui se va a crear un nombre para nuestro fichero.
 		// El nombre se puede modificar, pero el nombre por defecto
@@ -114,5 +121,5 @@ app.use(function(req, res, next){
 });
 
 app.listen(app.get('port'), app.get('host'), () => {
-	console.log('Server is up on port: ', app.get('port'), ' on host: ', app.get('host'));
+	console.log('Server is up on port:', app.get('port'),'on host:', app.get('host'));
 });

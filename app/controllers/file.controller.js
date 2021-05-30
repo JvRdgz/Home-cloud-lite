@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require('path');
-const baseUrl = "http://localhost:3000/files/";
+// const baseUrl = "http://localhost:3000/files/";
+const baseUrl = process.env.HOST +  ":" + process.env.PORT + "/files/";
+
 
 const getListFiles = (req, res) => {
 	const directoryPath = path.join(__dirname, "..", "uploads");
@@ -20,9 +22,9 @@ const getListFiles = (req, res) => {
 				url: baseUrl + file,
 			});
 		});
-
-		res.status(200).render("files");
-		// res.status(200).send(fileInfos);
+		// res.json(fileInfos);
+		// res.status(200).render("files");
+		res.status(200).send(fileInfos);
 	});
 };
 
