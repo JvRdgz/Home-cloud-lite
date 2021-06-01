@@ -28,8 +28,12 @@ const getListFiles = (req, res) => {
 		// res.downloadFile(fileInfos[0]);
 		const fileJson = JSON.stringify(fileInfos);
 		console.log("Objeto transformado a JSON: ", fileJson);
+		const pagina =
+			`<!doctype html><html><head></head><body>
+			HOLA</body></html>`;
+			res.end(pagina);
 		// res.status(200).send(fileJson);
-		res.status(200).render("files");
+		// res.status(200).render("files");
 		// res.end(fileJson);
 		// res.status(200).send(fileInfos);
 	});
@@ -49,7 +53,25 @@ const download = (req, res) => {
 		}
 	});
 };
-
+/*
+function recuperar(pedido, respuesta) {
+	let info = '';
+	pedido.on('data', datosparciales => {
+		info += datosparciales;
+	});
+	pedido.on('end', () => {
+		const formulario = querystring.parse(info);
+		respuesta.writeHead(200, { 'Content-Type': 'text/html' });
+		const pagina =
+			`<!doctype html><html><head></head><body>
+	  Nombre de usuario:${formulario['nombre']}<br>
+	  Clave:${formulario['clave']}<br>
+	  <a href="index.html">Retornar</a>
+	  </body></html>`;
+		respuesta.end(pagina);
+	});
+}
+*/
 module.exports = {
 	getListFiles,
 	download,

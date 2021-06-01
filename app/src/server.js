@@ -66,7 +66,7 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 // app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
-	secret: 'elpepe',
+	secret: 'key',
 	resave: false,
 	saveUninitialized: false
 }));
@@ -80,11 +80,18 @@ const routesRoute = path.join(__dirname, "..", "routes", "routes.js");
 require(routesRoute)(app, passport);
 
 // SUBIDA DE ARCHIVOS AL SERVIDOR
+/*
+const userTransform = email.split('@');
+const userName = userTransform[0];
 
-var dir = path.join(__dirname, "..", "uploads");
+console.log("USERNAME: ", userName);
+// const dir = path.join(__dirname, "..", userName);
+*/
 
-if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir);
+const dir = path.join(__dirname, "..", "uploads");
+
+if (!fs.existsSync(dir)) {
+	fs.mkdirSync(dir);
 }
 fs.readdir(dir, function (err, files) {
 	if (err) {
@@ -116,10 +123,144 @@ const upload = multer({ storage: storage });
 // del formulario donde se indica el name=""
 app.post("/upload", upload.array('avatar'), (req, res, next) => { res.redirect('/save') });
 
-app.use(function(req, res, next){
-    res.status(404).render('404', {title: "Sorry, page not found"});
+app.use(function (req, res, next) {
+	res.status(404).render('404', { title: "Sorry, page not found" });
 });
 
 app.listen(app.get('port'), app.get('host'), () => {
-	console.log('Server is up on port:', app.get('port'),'on host:', app.get('host'));
+	console.log('Server is up on port:', app.get('port'), 'on host:', app.get('host'));
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+const LocalStrategy = require('passport-local').Strategy;
+
+// const databaseRoute = path.join(__dirname, "database.js");
+
+// require(databaseRoute);
+
+const userRoute = path.join(__dirname, "..", "models", "user.js");
+const User = require(userRoute);
+
+module.exports = function (passport) {
+
+	passport.serializeUser(function (user, done) {
+		done(null, user.id);
+	});
+
+	passport.deserializeUser(function (id, done) {
+		User.findById(id, function (err, user) {
+			done(err, user);
+		});
+	});
+
+	// signup
+	passport.use('local-signup', new LocalStrategy({
+		usernameField: 'email',
+		passwordField: 'password',
+		passReqToCallback: true
+	},
+		function (req, email, password, done) {
+			User.findOne({ 'local.email': email }, function (err, user) {
+				if (err) { return done(err); }
+				if (user) {
+					return done(null, false, req.flash('signupMessage', 'Ya existe una cuenta con este correo.'));
+				} else {
+					var newUser = new User();
+					newUser.local.email = email;
+					// const initusername = newUser.local.email;
+					// let indice = initusername.indexOf("@");
+					// const finalusername = initusername.substring(0, indice);
+					// const dir = path.join(__dirname, "..", finalusername);
+					// mkdirp(dir);
+					newUser.local.password = newUser.generateHash(password);
+					newUser.save(function (err) {
+						if (err) { throw err; }
+						return done(null, newUser);
+					});
+				}
+			})
+		}));
+
+	// login
+	passport.use('local-login', new LocalStrategy({
+		usernameField: 'email',
+		passwordField: 'password',
+		passReqToCallback: true
+	},
+		function (req, email, password, done) {
+			User.findOne({ 'local.email': email }, function (err, user) {
+				if (err) { return done(err); }
+				if (!user) {
+					return done(null, false, req.flash('loginMessage', 'No existe ninguna cuenta con este correo'));
+				} if (!user.validatePassword(password)) {
+					return done(null, false, req.flash('loginMessage', 'La contraseña no es correcta'));
+				}
+				// SUBIDA DE ARCHIVOS AL SERVIDOR
+				const userTransform = email.split('@');
+				const userName = userTransform[0];
+
+				console.log("USERNAME: ", userName);
+				const dir = path.join(__dirname, "..", userName);
+
+				if (!fs.existsSync(dir)) {
+					fs.mkdirSync(dir);
+				}
+				fs.readdir(dir, function (err, files) {
+					if (err) {
+						onerror(err);
+						return;
+					}
+					else if (files.length == 0)
+						console.log('No existen archivos.');
+					else
+						console.log(files);
+				});
+
+				// req: informacion de la peticion
+				// file: archivo que se esta subiendo
+				// cb: aquello que se va a llamar cuando esta funcion termine.
+
+				const storage = multer.diskStorage({
+					destination: dir,
+					filename: function (req, file, cb) {
+						// Aqui se va a crear un nombre para nuestro fichero.
+						// El nombre se puede modificar, pero el nombre por defecto
+						// nunca se va repetir.
+						cb(null, Date.now() + file.originalname);
+					}
+				});
+
+				const upload = multer({ storage: storage });
+				// en el upload.single('...'), ahi dentro tiene que coincidir con el nombre
+				// del formulario donde se indica el name=""
+				app.post("/upload", upload.array('avatar'), (req, res, next) => { res.redirect('/save') });
+				return done(null, user);
+			})
+		}));
+}
+
+// Rutas para comunicar la app con el html y css
+const routesRoute = path.join(__dirname, "..", "routes", "routes.js");
+require(routesRoute)(app, passport);
+*/

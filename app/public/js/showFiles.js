@@ -1,9 +1,8 @@
 const requestURL = 'http://localhost:3000/files/';
-/*
-fetch('http://example.com/movies.json')
-	.then(response => response.json())
-	.then(data => console.log(data));
-*/
+
+// fetch(requestURL)
+// 	.then(response => response.json())
+// 	.then(data => console.log(data));
 const table = document.querySelector('table');
 
 const request = new XMLHttpRequest();
@@ -15,7 +14,7 @@ request.open('GET', requestURL, true);
 request.send();
 request.onreadystatechange = function () {
 	if (this.readyState == XMLHttpRequest.DONE && this.status === 200) {
-		console.log("JSON desde Cliente: ", this.responseText);
+		// console.log("JSON desde Cliente: ", this.responseText);
 		// let fileInfo = JSON.parse(this.responseText);
 		// console.log("Array desde el cliente: ", fileInfo);
 		// document.getElementById("prueba1").innerText = fileInfo[0];

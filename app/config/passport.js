@@ -1,5 +1,7 @@
 // Dependencia para el uso de rutas.
 const path = require('path');
+// fs nos permitira listar y obtener todos los archivos guardados en una carpeta.
+const fs = require('fs');
 // const mkdirp = require('mkdirp');
 // Registro de usuario Local
 const LocalStrategy = require('passport-local').Strategy;
@@ -22,7 +24,9 @@ module.exports = function (passport) {
 			done(err, user);
 		});
 	});
+	function userName(user) {
 
+	}
 	// signup
 	passport.use('local-signup', new LocalStrategy({
 		usernameField: 'email',
@@ -37,6 +41,9 @@ module.exports = function (passport) {
 				} else {
 					var newUser = new User();
 					newUser.local.email = email;
+
+					// Creo la carpeta del usuario.
+					userName(email);
 					// const initusername = newUser.local.email;
 					// let indice = initusername.indexOf("@");
 					// const finalusername = initusername.substring(0, indice);
@@ -68,4 +75,16 @@ module.exports = function (passport) {
 				return done(null, user);
 			})
 		}));
+}
+
+function userName(email) {
+	const userTransform = email.split('@');
+	const userName = userTransform[0];
+
+	console.log("USERNAME: ", userName);
+	const dir = path.join(__dirname, "..", userName);
+
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir);
+	}
 }

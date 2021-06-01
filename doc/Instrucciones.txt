@@ -85,10 +85,13 @@
 	Usamos el cdn de Axios
 
 15º- De cara al desarrollo, he creado un script en el package.json para poder ejecutar en desarrollo la aplicacion
-	con el comando npm run dev.
+	con el comando npm run dev, el cual usa nodemon para reinicar de forma automatica el servidor cada vez que haya algun
+	cambio en el mismo.
 16º- Creamos el archivo .env para alojar nuestras variables de entorno.
 	Vamos a proceder a crear un buen nivel de abstraccion en cuanto a la configuracion de la base de datos mediante variables
 	de entorno.
 
 	Asignamos una nueva variable host en el servidor con valor 0.0.0.0. Ponemos este valor porque cuando el servidor se lance
 	en produccion a Heroku, el propio heroku reconoce que esa url no existe y asignara una por defecto.
+
+17º- Creamos una funcion en passport que cree una carpeta con el nombre del usuario en el momento de registrarse.

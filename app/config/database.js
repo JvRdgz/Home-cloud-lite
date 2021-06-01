@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 // const mongoUri = `mongodb://${MYSKY_MONGODB_HOST}/${MYSKY_MONGODB_DATABASE}`
 // mongodb+srv://<username>:<password>@mysky.ragmu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-mongoose.connect(process.env.DB_URL_LOCAL, {
+mongoose.connect(process.env.DB_URL_ATLAS, {
 // mongoose.connect(mongoUri, {
 	// Para eliminar el mensaje de la consola
 	// useMongoClient: true,
