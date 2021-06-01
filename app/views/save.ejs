@@ -3,26 +3,31 @@
 
 <head>
 	<%- include('partials/head'); %>
-	<nav>
-		<div class="imageheader">
-			<a href="/profile" title="Perfil">
-				<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
-			</a>
-		</div>
-		<form action="/logout" method="GET">
-			<div class="logout">
-				<div style="text-align:center;">
-					<input type="submit" value="Cerrar sesion" class="button">
-				</div>
+		<nav>
+			<div class="imageheader">
+				<a href="/profile" title="Perfil">
+					<img src="/img/Logo_Mysky_Javi.png" alt="profile" width="120" height="80">
+				</a>
 			</div>
-		</form>
-		<div class="texto"></div>
-		<title>Guardado</title>
-	</nav>
+			<form action="/logout" method="GET">
+				<div class="logout">
+					<div style="text-align:center;">
+						<input type="submit" value="Cerrar sesion" class="button">
+					</div>
+				</div>
+			</form>
+			<form action="/files" method="GET">
+				<div class="logout">
+					<div style="text-align:center;">
+						<input type="submit" value="Ver archivos guardados" class="button">
+					</div>
+				</div>
+			</form>
+			<div class="texto">Guardado con exito!</div>
+			<title>Guardado</title>
+		</nav>
 </head>
-
-<body class="profile">
-	<div class="texto">GUARDADO CON EXITO!</div>
+<body class="profile"><br><br><br>
 	<script>
 		setTimeout('history.back()', 2500);
 	</script>
@@ -33,9 +38,9 @@
 				</a>
 			</div>
 		</div> -->
-		<footer>
-			<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
-		</footer>
+	<footer>
+		<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
+	</footer>
 </body>
 
 </html>

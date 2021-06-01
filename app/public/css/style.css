@@ -17,7 +17,13 @@ nav .texto {
 	margin-left: 30%;
 	color: rgb(223, 223, 223);
 }
-
+/*
+img {
+	max-width: 100%;
+	max-height: 100%;
+	float: left;
+}
+*/
 nav .imageheader {
 	height: auto;
 	padding: 2%;
@@ -30,7 +36,7 @@ nav .imageheader {
 	background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/background.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: 100% 100%;
+	background-size: cover;
 	text-align: center;
 }
 
@@ -40,7 +46,7 @@ nav .imageheader {
 	background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/sky.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
-	background-size: 100% 100%;
+	background-size: cover;
 	text-align: center;
 }
 
@@ -77,18 +83,18 @@ p {
 
 .input{
 	background: #f1f1f1;
-	padding: 15px;
 	border-left: 5px solid #1883ba;
 	border-radius: 8px;
 	outline: none;
-	width: 70%;
+	min-width: 50%;
+	width: fit-content;
 	height: fit-content;
 }
 
 .button {
 	text-decoration: none;
-	padding: 6px;
-	width: auto;
+	padding: 3px;
+	width: fit-content;
 	height: fit-content;
 	font-size: 1.2rem;
 	color: #ffffff;

@@ -1,6 +1,4 @@
-const express = require("express");
 const path = require('path');
-const router = express.Router();
 const controllerRoute = path.join(__dirname, "..", "controllers", "file.controller");
 const controller = require(controllerRoute);
 
@@ -50,7 +48,9 @@ module.exports = (app, passport) => {
 	});
 
 	app.get("/files", isLoggedIn, controller.getListFiles, (req, res) => {
-		res.render('files');
+		res.render('files', {
+			files: req.files
+		});
 	});
 	
 	app.get("/files/:name", isLoggedIn, controller.download);

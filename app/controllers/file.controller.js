@@ -24,20 +24,24 @@ const getListFiles = (req, res) => {
 			});
 			id++;
 		});
+		console.log("Primera posicion del array: ", fileInfos[0]);
+		// res.downloadFile(fileInfos[0]);
 		const fileJson = JSON.stringify(fileInfos);
 		console.log("Objeto transformado a JSON: ", fileJson);
-		res.status(200).json(fileJson);
-		// res.status(200).render("files");
+		// res.status(200).send(fileJson);
+		res.status(200).render("files");
+		// res.end(fileJson);
 		// res.status(200).send(fileInfos);
 	});
 };
 
 const download = (req, res) => {
 	const downloadFile = req.body.downloadFile;
+	console.log("Variable downloadFile: ", downloadFile);
 	const fileName = req.params.name;
-	const directoryPath = path.join(__dirname, "..", "uploads");
+	const directoryPath = path.join(__dirname, "..", "uploads", fileName);
 
-	res.download(directoryPath + fileName, fileName, (err) => {
+	res.download(directoryPath, fileName, (err) => {
 		if (err) {
 			res.status(500).send({
 				message: "Error al descargar el archivo. " + err,
