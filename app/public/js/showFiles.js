@@ -1,3 +1,4 @@
+/*
 const requestURL = 'http://localhost:3000/files/';
 
 // fetch(requestURL)
@@ -21,7 +22,7 @@ request.onreadystatechange = function () {
 		// processingTable(this.responseText);
 	}
 }
-
+*/
 // request.responseType = 'text';
 // request.send();
 

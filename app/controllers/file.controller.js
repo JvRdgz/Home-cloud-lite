@@ -26,12 +26,77 @@ const getListFiles = (req, res) => {
 		});
 		console.log("Primera posicion del array: ", fileInfos[0]);
 		// res.downloadFile(fileInfos[0]);
-		const fileJson = JSON.stringify(fileInfos);
-		console.log("Objeto transformado a JSON: ", fileJson);
+		// const fileJson = JSON.stringify(fileInfos);
+		// const filesTable = showFiles(fileJson);
+		showFiles(fileInfos);
+		console.log("PROBANDO: ", fileInfos);
+		// console.log("Objeto transformado a JSON: ", fileJson);
 		const pagina =
-			`<!doctype html><html><head></head><body>
-			HOLA</body></html>`;
-			res.end(pagina);
+			`<!DOCTYPE html>
+			<html lang="en">
+			
+			<head>
+			<meta charset="UTF-8">
+			<link rel="shortcut icon" href="#">
+			<link rel="icon" type="image/png" href="img/Logo_Mysky_Javi.png" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+			<!--<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">-->
+			<link rel="stylesheet" href="/css/style.css">
+			<!--link rel="stylesheet" href="/css/style2.css">-->
+			<!--<script type="text/javascript" src="login/signup.js"></script>-->
+			<link rel="preconnect" href="https://fonts.gstatic.com">
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+				integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+				integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+				<nav>
+					<div class="imageheader">
+						<a href="/profile" title="Perfil">
+							<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
+						</a>
+					</div>
+					<form action="/logout" method="GET">
+						<div class="logout">
+							<div style="text-align:center;">
+								<!-- <input type="submit" value="Cerrar sesion" class="button"> -->
+								<p id="prueba1"></p>
+							</div>
+						</div>
+					</form>
+					<div class="texto">Mis archivos</div>
+					<title>Mis archivos</title>
+					<!-- <script type="text/javascript" src="/js/showFiles.js"></script> -->
+				</nav>
+			</head>
+			
+			<body class="profile">
+			
+				<div class="volver">
+					<div style="text-align:center;">
+						<table>
+							${fileInfos}
+							<!-- <input type="file" name="downloadFile"/> -->
+							<tbody id="res">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			
+				<div class="volver">
+					<div style="text-align:center;">
+						<a href="/profile" class="button">Volver</a>
+					</div>
+				</div>
+				<footer>
+					<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
+				</footer>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+				<script type="text/javascript" src="/js/showFiles.js"></script>
+			</body>
+			
+			</html>`;
+		res.end(pagina);
 		// res.status(200).send(fileJson);
 		// res.status(200).render("files");
 		// res.end(fileJson);
@@ -72,6 +137,42 @@ function recuperar(pedido, respuesta) {
 	});
 }
 */
+
+function showFiles(fileInfo) {
+
+	console.log("Tamaño lista fileJson: ", fileInfo.length);
+	/*
+	for (var i = 0; i < fileJson.length; i++) {
+		console.log("EN LA FUNCION filesTable");
+		const myArticle = document.createElement('tr');
+		const myH2 = document.createElement('h2');
+		const myPara1 = document.createElement('p');
+		const myPara2 = document.createElement('p');
+		const myPara3 = document.createElement('p');
+		const myList = document.createElement('ul');
+
+		myH2.textContent = heroes[i].name;
+		myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+		myPara2.textContent = 'Age: ' + heroes[i].age;
+		myPara3.textContent = 'Superpowers:';
+
+		const superPowers = heroes[i].powers;
+		for (var j = 0; j < superPowers.length; j++) {
+			const listItem = document.createElement('li');
+			listItem.textContent = superPowers[j];
+			myList.appendChild(listItem);
+		}
+
+		myArticle.appendChild(myH2);
+		myArticle.appendChild(myPara1);
+		myArticle.appendChild(myPara2);
+		myArticle.appendChild(myPara3);
+		myArticle.appendChild(myList);
+
+		section.appendChild(myArticle);
+	}
+	*/
+}
 module.exports = {
 	getListFiles,
 	download,
