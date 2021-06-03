@@ -51,6 +51,8 @@ https://developer.mozilla.org/es/docs/Learn/JavaScript/Objects/JSON
 Libreria Anxios
 https://desarrolloweb.com/articulos/axios-ajax-cliente-http-javascript.html
 
-
 Enviar JSON a cliente!
 https://www.youtube.com/watch?v=X5O5hyMaino
+
+Atributos de elementos HTML desde JavaScript:
+https://www.codegrepper.com/code-examples/javascript/add+css+class+with+setAttribute

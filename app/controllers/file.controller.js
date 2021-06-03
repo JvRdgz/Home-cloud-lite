@@ -16,6 +16,9 @@ const getListFiles = (req, res) => {
 
 		let fileInfos = [];
 		var id = 0;
+		// const userTransform = email.split('@');
+		// const userName = userTransform[0];
+		// console.log("nombre: ", files[0]);
 		files.forEach((file) => {
 			fileInfos.push({
 				id: id,
@@ -24,15 +27,134 @@ const getListFiles = (req, res) => {
 			});
 			id++;
 		});
-		console.log("Primera posicion del array: ", fileInfos[0]);
+		// console.log("Primera posicion del array: ", fileInfos[0]);
 		// res.downloadFile(fileInfos[0]);
 		// const fileJson = JSON.stringify(fileInfos);
 		// const filesTable = showFiles(fileJson);
-		showFiles(fileInfos);
-		console.log("PROBANDO: ", fileInfos);
+		// showFiles(fileInfos);
+		const fileJson = JSON.stringify(fileInfos);
+		// const pagina = showFiles(files, fileInfos);
+		// console.log("PROBANDO: ", fileInfos);
 		// console.log("Objeto transformado a JSON: ", fileJson);
+		// res.end(pagina);
+		res.status(200).send(fileJson);
+		// res.status(200).render("files");
+		// res.end(fileJson);
+		// res.status(200).send(fileInfos);
+	});
+};
+
+const download = (req, res) => {
+	const downloadFile = req.body.downloadFile;
+	console.log("Variable downloadFile: ", downloadFile);
+	const fileName = req.params.name;
+	const directoryPath = path.join(__dirname, "..", "uploads", fileName);
+
+	res.download(directoryPath, fileName, (err) => {
+		if (err) {
+			res.status(500).send({
+				message: "Error al descargar el archivo. " + err,
+			});
+		}
+	});
+};
+
+
+
+
+/*
+function recuperar(pedido, respuesta) {
+	let info = '';
+	pedido.on('data', datosparciales => {
+		info += datosparciales;
+	});
+	pedido.on('end', () => {
+		const formulario = querystring.parse(info);
+		respuesta.writeHead(200, { 'Content-Type': 'text/html' });
 		const pagina =
-			`<!DOCTYPE html>
+			`<!doctype html><html><head></head><body>
+	  Nombre de usuario:${formulario['nombre']}<br>
+	  Clave:${formulario['clave']}<br>
+	  <a href="index.html">Retornar</a>
+	  </body></html>`;
+		respuesta.end(pagina);
+	});
+}
+*/
+
+
+
+
+/*
+function showFiles(files, fileInfos) {
+	const fileJson = JSON.stringify(fileInfos);
+	// console.log("Tamaño lista fileJson: ", fileJson.length);
+	var extension = null;
+	var transformExtension = null;
+	const tabla = document.createElement("table");
+	const tblBody = document.createElement("tbody");
+	const img = document.createElement("img");
+	for (var j = 0; j < 4; j++) {
+		var col = document.createElement("th");
+	}
+	for (var i = 0; i < fileInfos.length; i++) {
+		var hilera = document.createElement("tr");
+		transformExtension = files[i].split('.');
+		extension = transformExtension[1];
+		console.log("Extension: ", extension);
+
+		// console.log("Num: ", i);
+		// const titulo
+		// console.log(fileInfos[i].extension);
+	}
+*/
+
+
+	// Crea un elemento <table> y un elemento <tbody>
+	// var tabla = document.createElement("table");
+	// var tblBody = document.createElement("tbody");
+	// var img = document.createElement("img");
+
+	// // Crea las celdas
+	// for (var i = 0; i < 2; i++) {
+	// 	// Crea las hileras de la tabla
+	// 	var hilera = document.createElement("tr");
+
+	// 	for (var j = 0; j < 2; j++) {
+	// 		// Crea un elemento <td> y un nodo de texto, haz que el nodo de
+	// 		// texto sea el contenido de <td>, ubica el elemento <td> al final
+	// 		// de la hilera de la tabla
+	// 		var celda = document.createElement("td");
+	// 		var textoCelda = document.createTextNode("celda en la hilera " + i + ", columna " + j);
+	// 		celda.appendChild(textoCelda);
+	// 		hilera.appendChild(celda);
+	// 	}
+
+	// 	// agrega la hilera al final de la tabla (al final del elemento tblbody)
+	// 	tblBody.appendChild(hilera);
+	// }
+
+	// // posiciona el <tbody> debajo del elemento <table>
+	// tabla.appendChild(tblBody);
+	// appends <table> into <body>
+	// body.appendChild(tabla);
+	// modifica el atributo "border" de la tabla y lo fija a "2";
+	// tabla.setAttribute("border", "2");
+
+
+
+
+	/*
+	for (let i in fileJson) {
+		for (let j in fileJson[i]) {
+			console.log("JSON: ", fileJson[i][j]);
+		}
+	}
+	*/
+
+	/*
+	const pagina =
+		`<!DOCTYPE html>
 			<html lang="en">
 			
 			<head>
@@ -74,11 +196,38 @@ const getListFiles = (req, res) => {
 			
 				<div class="volver">
 					<div style="text-align:center;">
-						<table>
-							${fileInfos}
+						<table class="files">
+							<tr>
+								<img src="/img/photo.png">
+								<!-- <th>${fileJson}</th> -->
+							</tr>
+							<tr>
+								<th>Firstname</th>
+								<th>Lastname</th>
+								<th>Savings</th>
+							</tr>
+								<tr>
+								<td>Peter</td>
+								<td>Griffin</td>
+								<td>$100</td>
+							</tr>
+								<tr>
+								<td>Lois</td>
+								<td>Griffin</td>
+								<td>$150</td>
+							</tr>
+								<tr>
+								<td>Joe</td>
+								<td>Swanson</td>
+								<td>$300</td>
+							</tr>
+							 <tr>
+								<td>Cleveland</td>
+								<td>Brown</td>
+								<td>$250</td>
+							</tr>
 							<!-- <input type="file" name="downloadFile"/> -->
-							<tbody id="res">
-							</tbody>
+
 						</table>
 					</div>
 				</div>
@@ -96,51 +245,11 @@ const getListFiles = (req, res) => {
 			</body>
 			
 			</html>`;
-		res.end(pagina);
-		// res.status(200).send(fileJson);
-		// res.status(200).render("files");
-		// res.end(fileJson);
-		// res.status(200).send(fileInfos);
-	});
-};
+	return pagina;
+	*/
 
-const download = (req, res) => {
-	const downloadFile = req.body.downloadFile;
-	console.log("Variable downloadFile: ", downloadFile);
-	const fileName = req.params.name;
-	const directoryPath = path.join(__dirname, "..", "uploads", fileName);
 
-	res.download(directoryPath, fileName, (err) => {
-		if (err) {
-			res.status(500).send({
-				message: "Error al descargar el archivo. " + err,
-			});
-		}
-	});
-};
-/*
-function recuperar(pedido, respuesta) {
-	let info = '';
-	pedido.on('data', datosparciales => {
-		info += datosparciales;
-	});
-	pedido.on('end', () => {
-		const formulario = querystring.parse(info);
-		respuesta.writeHead(200, { 'Content-Type': 'text/html' });
-		const pagina =
-			`<!doctype html><html><head></head><body>
-	  Nombre de usuario:${formulario['nombre']}<br>
-	  Clave:${formulario['clave']}<br>
-	  <a href="index.html">Retornar</a>
-	  </body></html>`;
-		respuesta.end(pagina);
-	});
-}
-*/
 
-function showFiles(fileInfo) {
-
-	console.log("Tamaño lista fileJson: ", fileInfo.length);
 	/*
 	for (var i = 0; i < fileJson.length; i++) {
 		console.log("EN LA FUNCION filesTable");
@@ -171,8 +280,8 @@ function showFiles(fileInfo) {
 
 		section.appendChild(myArticle);
 	}
-	*/
 }
+*/
 module.exports = {
 	getListFiles,
 	download,

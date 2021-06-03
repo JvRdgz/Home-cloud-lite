@@ -1,3 +1,9 @@
+// axios.get('http://localhost:3000/files').then(res => console.log(res.data));
+console.log("hola");
+fetch('http://localhost:3000/files')
+	.then(response => response.json())
+	.then(data => console.log("Datos fetch", data));
+
 /*
 const requestURL = 'http://localhost:3000/files/';
 
