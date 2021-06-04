@@ -48,7 +48,6 @@ module.exports = (app, passport) => {
 		res.render('info');
 	});
 
-	/*
 	app.get("/files", (req, res) => {
 		const directoryPath = path.join(__dirname, "..", "uploads");
 		const baseUrl = "http://localhost:3000/files/";
@@ -88,14 +87,14 @@ module.exports = (app, passport) => {
 			// res.status(200).send(fileInfos);
 		});
 	});
-	*/
 
+	/*
 	app.get("/files", isLoggedIn, controller.getListFiles, (req, res) => {
 		res.render('files');
 	});
 
 	app.get("/files/:name", isLoggedIn, controller.download);
-	
+	*/
 	app.get('/logout', (req, res) => {
 		req.logout();
 		res.redirect('/');

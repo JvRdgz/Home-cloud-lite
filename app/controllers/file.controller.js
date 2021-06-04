@@ -3,7 +3,7 @@ const path = require('path');
 const baseUrl = "http://localhost:3000/files/";
 // const baseUrl = process.env.HOST +  ":" + process.env.PORT + "/files/";
 
-
+/*
 const getListFiles = (req, res) => {
 	const directoryPath = path.join(__dirname, "..", "uploads");
 
@@ -43,7 +43,7 @@ const getListFiles = (req, res) => {
 		// res.status(200).send(fileInfos);
 	});
 };
-
+*/
 const download = (req, res) => {
 	const downloadFile = req.body.downloadFile;
 	console.log("Variable downloadFile: ", downloadFile);
@@ -283,6 +283,6 @@ function showFiles(files, fileInfos) {
 }
 */
 module.exports = {
-	getListFiles,
+	// getListFiles,
 	download,
 };
