@@ -60,3 +60,6 @@ https://www.codegrepper.com/code-examples/javascript/add+css+class+with+setAttri
 
 Nextjs
 https://nextjs.org/learn/basics/navigate-between-pages/setup
+
+EJS
+https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application-es
