@@ -1,11 +1,13 @@
 const path = require('path');
 const controllerRoute = path.join(__dirname, "..", "controllers", "file.controller");
 const controller = require(controllerRoute);
+const fs = require("fs");
 
 module.exports = (app, passport) => {
 
 	// const indexRoute = path.join(__dirname, "views", "index.ejs");
 	app.get("/", (req, res) => {
+
 		res.render('index');
 	});
 
@@ -38,8 +40,9 @@ module.exports = (app, passport) => {
 	}));
 
 	app.get('/profile', isLoggedIn, (req, res) => {
+		console.log("Ficheros: ", controller.getFiles);
 		res.render('profile', {
-			user: req.user
+			user: logUserName
 		});
 	});
 
@@ -89,8 +92,72 @@ module.exports = (app, passport) => {
 	});
 	*/
 
+	// controller.getListFiles,
+
 	app.get("/files", isLoggedIn, (req, res) => {
-		res.render('files');
+		/*
+		var fileInfos = [];
+		const baseUrl = "http://localhost:3000/files/";
+		fs.readdir(dirGlobal, function (err, files) {
+			if (err) {
+				res.status(500).send({
+					message: "Error, no se han podido escanear tus archivos.",
+				});
+			}
+
+			var id = 0;
+			// const userTransform = email.split('@');
+			// const userName = userTransform[0];
+			// console.log("nombre: ", files[0]);
+			files.forEach((file) => {
+				fileInfos.push({
+					id: id,
+					name: file,
+					url: baseUrl + file,
+				});
+				id++;
+			});
+			// console.log("Primera posicion del array: ", fileInfos[0]);
+			// res.downloadFile(fileInfos[0]);
+			// const fileJson = JSON.stringify(fileInfos);
+			// const filesTable = showFiles(fileJson);
+			// showFiles(fileInfos);
+			// const fileJson = JSON.stringify(fileInfos);
+			// res.json(fileJson);
+			// const pagina = showFiles(files, fileInfos);
+			// console.log("PROBANDO: ", fileInfos);
+			// console.log("Objeto transformado a JSON: ", fileJson);
+			// res.end(pagina);
+			// res.status(200).send(fileJson);
+			// res.status(200).render("files");
+			// res.end(fileJson);
+			// res.status(200).send(fileInfos);
+		});
+		*/
+
+		/*
+		var mascots = [
+			{ name: 'Sammy', organization: "DigitalOcean", birth_year: 2012 },
+			{ name: 'Tux', organization: "Linux", birth_year: 1996 },
+			{ name: 'Moby Dock', organization: "Docker", birth_year: 2013 }
+		];
+		var tagline = "No programming concept is complete without a cute animal mascot.";
+		*/
+
+		var mascots = [
+			{ name: 'Sammy', organization: "DigitalOcean", birth_year: 2012 },
+			{ name: 'Tux', organization: "Linux", birth_year: 1996 },
+			{ name: 'Moby Dock', organization: "Docker", birth_year: 2013 }
+		];
+		var tagline = "No programming concept is complete without a cute animal mascot.";
+
+		res.render('files', {
+			mascots: mascots,
+			tagline: tagline
+		});
+		// res.render('files', {
+		// 	fileInfos: 'fileInfos'
+		// });
 	});
 
 	app.get("/files/:name", isLoggedIn, controller.download);
@@ -165,6 +232,7 @@ module.exports = (app, passport) => {
 	app.get("/save", isLoggedIn, (req, res) => {
 		res.render('save');
 	});
+
 };
 
 function isLoggedIn(req, res, next) {

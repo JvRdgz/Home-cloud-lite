@@ -1,53 +1,63 @@
+// fs nos permitira listar y obtener todos los archivos guardados en una carpeta.
 const fs = require("fs");
-const path = require('path');
+// Modulo para gestionar la subida de archivos al servidor
+const formidable = require('formidable');
+// Manejador de handlers de express
+// const asyncHandler = require('express-async-handler')
+// const path = require('path');
 const baseUrl = "http://localhost:3000/files/";
 // const baseUrl = process.env.HOST +  ":" + process.env.PORT + "/files/";
 
-// Modulo para gestionar la subida de archivos al servidor
-const formidable = require('formidable');
-
-const uploadFiles = function (app) {
+const uploadFilesController = function (app) {
 	function isLoggedIn(req, res, next) {
 		if (req.isAuthenticated()) { return next(); }
 		return res.redirect('/');
 	};
 	app.post("/upload", isLoggedIn, (req, res, next) => {
-		if (!fs.existsSync(dirGlobal)) {
-			fs.mkdirSync(dirGlobal);
+		try {
+			uploadFiles(req, res, next);
+		} catch (error) {
+			return next(error);
 		}
-		fs.readdir(dirGlobal, function (err, files) {
-			if (err) {
-				onerror(err);
-				return;
-			}
-			else if (files.length == 0)
-				console.log('No existen archivos.');
-			else
-				console.log(files);
-		});
-		const form = new formidable.IncomingForm();
-		form.uploadDir = logUserName;
-		form.parse(req);
-		// 'fileBegin' SE INVOCA CUANDO UN ARCHIVO COMIENZA A SUBIRSE.
-		form.on('fileBegin', (field, file) => {
-			console.log("Subiendo archivo...");
-			let ts = Date.now();
-			let date_ob = new Date(ts);
-			let date = date_ob.getDate();
-			let month = date_ob.getMonth() + 1;
-			let year = date_ob.getFullYear();
-			let finalDate = date + "-" + month + "-" + year + "_" + ts + "-";
-			filename = finalDate + file.name;
-			console.log("Nombre del archivo: ", filename);
-			file.path = dirGlobal + "/" + filename;
-		});
-		// 'file' SE INVOCA CUANDO EL ARCHIVO SE HA GUARDADO POR COMPLETO
-		form.on('file', (field, file) => {
-			console.log("Archivos guardado!");
-		})
-		form.on('end', function () {
-			res.status(200).redirect('/save')
-		});
+	});
+}
+function uploadFiles(req, res, next) {
+	if (!fs.existsSync(dirGlobal)) {
+		fs.mkdirSync(dirGlobal);
+	}
+	fs.readdir(dirGlobal, function (err, files) {
+		if (err) {
+			onerror(err);
+			return;
+		}
+		else if (files.length == 0)
+			console.log('No existen archivos.');
+		else
+			console.log(files);
+	});
+	const form = new formidable.IncomingForm();
+	form.maxFileSize = 300 * 1024 * 1024;
+	form.uploadDir = logUserName;
+	form.parse(req);
+	// 'fileBegin' SE INVOCA CUANDO UN ARCHIVO COMIENZA A SUBIRSE.
+	form.on('fileBegin', (field, file) => {
+		console.log("Subiendo archivo...");
+		let ts = Date.now();
+		let date_ob = new Date(ts);
+		let date = date_ob.getDate();
+		let month = date_ob.getMonth() + 1;
+		let year = date_ob.getFullYear();
+		let finalDate = date + "-" + month + "-" + year + "_" + ts + "-";
+		filename = finalDate + file.name;
+		console.log("Nombre del archivo: ", filename);
+		file.path = dirGlobal + "/" + filename;
+	});
+	// 'file' SE INVOCA CUANDO EL ARCHIVO SE HA GUARDADO POR COMPLETO
+	form.on('file', (field, file) => {
+		console.log("Archivos guardado!");
+	})
+	form.on('end', function () {
+		res.status(200).redirect('/save')
 	});
 }
 
@@ -79,6 +89,7 @@ const getListFiles = (req, res) => {
 		// const filesTable = showFiles(fileJson);
 		// showFiles(fileInfos);
 		const fileJson = JSON.stringify(fileInfos);
+		// res.json(fileJson);
 		// const pagina = showFiles(files, fileInfos);
 		// console.log("PROBANDO: ", fileInfos);
 		// console.log("Objeto transformado a JSON: ", fileJson);
@@ -330,5 +341,5 @@ for (var i = 0; i < fileJson.length; i++) {
 module.exports = {
 	getListFiles,
 	download,
-	uploadFiles,
+	uploadFilesController,
 };

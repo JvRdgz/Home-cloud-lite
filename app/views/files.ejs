@@ -13,7 +13,6 @@
 				<div class="logout">
 					<div style="text-align:center;">
 						<!-- <input type="submit" value="Cerrar sesion" class="button"> -->
-						<p id="prueba1"></p>
 					</div>
 				</div>
 			</form>
@@ -30,8 +29,8 @@
 
 <body class="profile">
 
-
 	<div style="text-align:center;">
+
 		<!-- <input type="file" id="files" name="files[]" multiple />
 				<output id="list"></output> -->
 		<table class="files">
@@ -57,9 +56,40 @@
 				<th>Mi musica</th>
 			</tr>
 			<tr>
-				<td>Peter</td>
-				<td>Griffin</td>
-				<td>$100</td>
+				<th>
+					<!-- <input type="button" value="Mostrar" onclick="genera_tabla()"> -->
+					<ul>
+						<% mascots.forEach(function(mascot) { %>
+							<li>
+								<strong>
+									<%= mascot.name %>
+								</strong>
+								representing <%= mascot.organization %>, born <%= mascot.birth_year %>
+							</li>
+							<% }); %>
+					</ul><br><br>
+				</th>
+				<!-- <th>
+					<div id="fotos1">
+						<script>
+							var folder = "../../javi";
+							console.log("Directorio de ajax: ", folder);
+							$.ajax({
+								url: folder,
+								success: function (data) {
+									$(data).find("a").attr("href", function (i, val) {
+										if (val.match(/\.(jpe?g|jpg|png|gif)$/)) {
+											$("#fotos1").append("<img src='" + folder + val + "'><br>");
+										}
+									});
+								}
+							});
+						</script>
+					</div>
+				</th> -->
+				<th>Mis videos</th>
+				<th>Mis archivos</th>
+				<th>Mi musica</th>
 			</tr>
 			<tr>
 				<td>

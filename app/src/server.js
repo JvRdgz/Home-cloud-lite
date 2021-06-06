@@ -13,9 +13,6 @@ const app = express();
 // Dependencia para el uso de rutas.
 const path = require('path');
 
-// fs nos permitira listar y obtener todos los archivos guardados en una carpeta.
-const fs = require('fs');
-
 // Modulo para gestionar la autentificacion de usuarios en el sistema.
 const passport = require('passport');
 
@@ -29,9 +26,6 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 
 const session = require('express-session');
-
-// Modulo para gestionar la subida de archivos al servidor
-const formidable = require('formidable');
 
 /**
  * CONFIGURACION DE SERVIDOR
@@ -95,7 +89,7 @@ const controllerRoute = path.join(__dirname, "..", "controllers", "file.controll
 const controller = require(controllerRoute);
 
 // SUBIDA DE ARCHIVOS AL SERVIDOR
-controller.uploadFiles(app);
+controller.uploadFilesController(app);
 
 app.use(function (req, res, next) {
 	res.status(404).render('404', { title: "Sorry, page not found" });
