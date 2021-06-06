@@ -33,7 +33,7 @@ RUN		apt install -y vim wget systemd nodejs npm
 ##################################################################
 
 # Instalacion de dependencias necesarias para la aplicacion.
-RUN		npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs mime-types mongoose passport body-parser passport-local ejs require-optional method-override dotenv mkdirp pm2@latest -g
+RUN		npm i -S express express-fileupload express-session cookie-parser connect-flash bcrypt-nodejs multer path morgan fs mime-types mongoose passport body-parser passport-local ejs require-optional method-override dotenv mkdirp -g pm2
 ##################################################################
 ########################### MONGODB ##############################
 ##################################################################
@@ -60,8 +60,8 @@ COPY	./app ./
 # sistema operativo, coja por defecto el puerto 3000, pero en este caso el
 # contenedor escucha por el puerto 8080, por lo tanto para probar el servidor
 # en local, se debera de ingresar a localhost:8080
-EXPOSE 3000
+EXPOSE 4000
 
 # Ejecutar el comando para levantarla en local.
 # CMD bash init_services.sh
-CMD [ "bash" ]
+CMD [ "bash", "init_services.sh" ]

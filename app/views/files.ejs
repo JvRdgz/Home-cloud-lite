@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include('partials/head'); %>
+		<nav>
+			<div class="imageheader">
+				<a href="/profile" title="Perfil">
+					<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
+				</a>
+			</div>
+			<form action="/logout" method="GET">
+				<div class="logout">
+					<div style="text-align:center;">
+						<!-- <input type="submit" value="Cerrar sesion" class="button"> -->
+						<p id="prueba1"></p>
+					</div>
+				</div>
+			</form>
+			<div class="logout">
+				<div style="text-align:center;">
+					<a href="/profile" class="button">Volver</a>
+				</div>
+			</div>
+			<div class="texto">Mis archivos</div>
+			<title>Mis archivos</title>
+			<!-- <script type="text/javascript" src="/js/showFiles.js"></script> -->
+		</nav>
+</head>
+
+<body class="profile">
+
+
+	<div style="text-align:center;">
+		<!-- <input type="file" id="files" name="files[]" multiple />
+				<output id="list"></output> -->
+		<table class="files">
+			<tr>
+				<th>
+					<img src="/img/photo.png" alt="Mis fotos" class="files">
+				</th>
+				<th>
+					<img src="/img/video2.png" alt="Mis videos" class="files">
+				</th>
+				<th>
+					<img src="/img/files2.png" alt="Mis archivos" class="files">
+				</th>
+				<th>
+					<img src="/img/music.png" alt="Mi musica" class="files">
+				</th>
+				<!-- <th>${fileJson}</th> -->
+			</tr>
+			<tr>
+				<th>Mis fotos</th>
+				<th>Mis videos</th>
+				<th>Mis archivos</th>
+				<th>Mi musica</th>
+			</tr>
+			<tr>
+				<td>Peter</td>
+				<td>Griffin</td>
+				<td>$100</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="file" id="files" name="files[]" multiple />
+					<output id="list"></output>
+				</td>
+			</tr>
+			<!-- <tr>
+				<td>Lois</td>
+				<td>Griffin</td>
+				<td>$150</td>
+			</tr>
+			<tr>
+				<td>Joe</td>
+				<td>Swanson</td>
+				<td>$300</td>
+			</tr>
+			<tr>
+				<td>Cleveland</td>
+				<td>Brown</td>
+				<td>$250</td>
+			</tr> -->
+			<!-- <input type="file" name="downloadFile"/> -->
+
+		</table>
+	</div>
+	<footer>
+		<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
+	</footer>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<script type="text/javascript" src="/js/showFiles.js"></script>
+</body>
+
+</html>

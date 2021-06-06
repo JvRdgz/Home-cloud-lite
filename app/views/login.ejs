@@ -29,9 +29,9 @@
 						<%= message %>
 					</div>
 					<% } %>
-						<form action="/login" method="POST">
+						<form action="/login" method="POST" name="formLogin" , onsubmit="procesar()">
 							<div class="form-group">
-								<input type="email" name="email" placeholder="email" required="required"
+								<input id="email" type="email" name="email" placeholder="email" required="required"
 									class="input"></input><br><br>
 							</div>
 							<div class="form-group">
@@ -54,6 +54,7 @@
 	<footer>
 		<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
 	</footer>
+	<script type="text/javascript" src="/js/showFiles.js"></script>
 </body>
 
 </html>

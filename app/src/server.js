@@ -35,8 +35,8 @@ const session = require('express-session');
 
 // Configuracion:
 // Variable PORT coge por defecto el puerto de la variable de entorno.
-// En caso contrario coge el puerto 3000.
-app.set('port', process.env.PORT || 3000);
+// En caso contrario coge el puerto 4000.
+app.set('port', process.env.PORT || 4000);
 app.set('host', process.env.HOST || '0.0.0.0');
 app.set('views', path.join(__dirname, "..", 'views'));
 
@@ -62,13 +62,19 @@ const passportRute = path.join(__dirname, "..", "config", "passport.js");
 require(passportRute)(passport);
 
 // MIDDLEWARES
+app.use(function (req, res, next) {
+	res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
+
 app.use(morgan('dev'));
 app.use(cookieParser());
 // app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({
 	secret: 'key',
-	resave: false,
-	saveUninitialized: false
+	resave: true,
+	saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -111,17 +117,25 @@ fs.readdir(dir, function (err, files) {
 const storage = multer.diskStorage({
 	destination: dir,
 	filename: function (req, file, cb) {
-		// Aqui se va a crear un nombre para nuestro fichero.
-		// El nombre se puede modificar, pero el nombre por defecto
-		// nunca se va repetir.
-		cb(null, Date.now() + file.originalname);
+		let ts = Date.now();
+
+		let date_ob = new Date(ts);
+		let date = date_ob.getDate();
+		let month = date_ob.getMonth() + 1;
+		let year = date_ob.getFullYear();
+		let finalDate = date + "-" + month + "-" + year + "_" + ts + "-";
+		cb(null, finalDate + file.originalname);
 	}
 });
 
 const upload = multer({ storage: storage });
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated()) { return next(); }
+	return res.redirect('/');
+};
 // en el upload.single('...'), ahi dentro tiene que coincidir con el nombre
 // del formulario donde se indica el name=""
-app.post("/upload", upload.array('avatar'), (req, res, next) => { res.redirect('/save') });
+app.post("/upload", isLoggedIn, upload.array('avatar'), (req, res, next) => { res.redirect('/save') });
 
 app.use(function (req, res, next) {
 	res.status(404).render('404', { title: "Sorry, page not found" });

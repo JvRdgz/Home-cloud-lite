@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require("fs");
 const controllerRoute = path.join(__dirname, "..", "controllers", "file.controller");
 const controller = require(controllerRoute);
+const multer = require('multer');
 
 module.exports = (app, passport) => {
 
@@ -48,6 +49,7 @@ module.exports = (app, passport) => {
 		res.render('info');
 	});
 
+	/*
 	app.get("/files", (req, res) => {
 		const directoryPath = path.join(__dirname, "..", "uploads");
 		const baseUrl = "http://localhost:3000/files/";
@@ -81,20 +83,20 @@ module.exports = (app, passport) => {
 			// console.log("PROBANDO: ", fileInfos);
 			// console.log("Objeto transformado a JSON: ", fileJson);
 			// res.end(pagina);
-			res.status(200).send(fileJson);
-			// res.status(200).render("files");
+			// res.status(200).send(fileJson);
+			res.status(200).render("files");
 			// res.end(fileJson);
 			// res.status(200).send(fileInfos);
 		});
 	});
+	*/
 
-	/*
-	app.get("/files", isLoggedIn, controller.getListFiles, (req, res) => {
+	app.get("/files", isLoggedIn, (req, res) => {
 		res.render('files');
 	});
 
 	app.get("/files/:name", isLoggedIn, controller.download);
-	*/
+
 	app.get('/logout', (req, res) => {
 		req.logout();
 		res.redirect('/');
@@ -115,6 +117,53 @@ module.exports = (app, passport) => {
 	app.get("/upload", isLoggedIn, (req, res) => {
 		res.render('upload');
 	});
+
+	/*
+	function subir () {
+		console.log("VARIABLE: ", dirGlobal);
+		const dir = path.join(__dirname, "..", "uploads");
+
+		if (!fs.existsSync(dir)) {
+			fs.mkdirSync(dir);
+		}
+		fs.readdir(dir, function (err, files) {
+			if (err) {
+				onerror(err);
+				return;
+			}
+			else if (files.length == 0)
+				console.log('No existen archivos.');
+			else
+				console.log(files);
+		});
+
+		// req: informacion de la peticion
+		// file: archivo que se esta subiendo
+		// cb: aquello que se va a llamar cuando esta funcion termine.
+
+		const storage = multer.diskStorage({
+			destination: dirGlobal,
+			filename: function (req, file, cb) {
+				let ts = Date.now();
+
+				let date_ob = new Date(ts);
+				let date = date_ob.getDate();
+				let month = date_ob.getMonth() + 1;
+				let year = date_ob.getFullYear();
+				let finalDate = date + "-" + month + "-" + year + "_" + ts + "-";
+				cb(null, finalDate + file.originalname);
+			}
+		});
+
+		const upload = multer({ storage: storage });
+		app.post("/upload", isLoggedIn, upload.array('avatar'), (req, res, next) => { res.redirect('/save') });
+	}
+	*/
+
+
+	// en el upload.single('...'), ahi dentro tiene que coincidir con el nombre
+	// del formulario donde se indica el name=""
+
 	app.get("/save", isLoggedIn, (req, res) => {
 		res.render('save');
 	});

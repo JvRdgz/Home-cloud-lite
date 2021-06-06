@@ -56,3 +56,7 @@ https://www.youtube.com/watch?v=X5O5hyMaino
 
 Atributos de elementos HTML desde JavaScript:
 https://www.codegrepper.com/code-examples/javascript/add+css+class+with+setAttribute
+
+
+Nextjs
+https://nextjs.org/learn/basics/navigate-between-pages/setup

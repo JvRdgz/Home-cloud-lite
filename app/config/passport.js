@@ -5,7 +5,6 @@ const fs = require('fs');
 // const mkdirp = require('mkdirp');
 // Registro de usuario Local
 const LocalStrategy = require('passport-local').Strategy;
-
 // const databaseRoute = path.join(__dirname, "database.js");
 
 // require(databaseRoute);
@@ -24,9 +23,7 @@ module.exports = function (passport) {
 			done(err, user);
 		});
 	});
-	function userName(user) {
 
-	}
 	// signup
 	passport.use('local-signup', new LocalStrategy({
 		usernameField: 'email',
@@ -72,6 +69,13 @@ module.exports = function (passport) {
 				} if (!user.validatePassword(password)) {
 					return done(null, false, req.flash('loginMessage', 'La contraseña no es correcta'));
 				}
+				const userTransform = email.split('@');
+				const username = userTransform[0];
+				const dir = path.join(__dirname, "..", username);
+				global.dirGlobal = dir;
+				console.log("FFFF: ", dirGlobal);
+				console.log("Usuario loggeado: ", username);
+				console.log("")
 				return done(null, user);
 			})
 		}));
@@ -79,12 +83,13 @@ module.exports = function (passport) {
 
 function userName(email) {
 	const userTransform = email.split('@');
-	const userName = userTransform[0];
+	const username = userTransform[0];
 
-	console.log("USERNAME: ", userName);
-	const dir = path.join(__dirname, "..", userName);
+	console.log("Nuevo usuario registrado: ", username);
+	const dir = path.join(__dirname, "..", username);
+	console.log("Directorio: ", dir);
 
 	if (!fs.existsSync(dir)) {
 		fs.mkdirSync(dir);
 	}
-}
+};
