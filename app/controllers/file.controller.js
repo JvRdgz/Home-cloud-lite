@@ -3,11 +3,57 @@ const path = require('path');
 const baseUrl = "http://localhost:3000/files/";
 // const baseUrl = process.env.HOST +  ":" + process.env.PORT + "/files/";
 
+// Modulo para gestionar la subida de archivos al servidor
+const formidable = require('formidable');
+
+const uploadFiles = function (app) {
+	function isLoggedIn(req, res, next) {
+		if (req.isAuthenticated()) { return next(); }
+		return res.redirect('/');
+	};
+	app.post("/upload", isLoggedIn, (req, res, next) => {
+		if (!fs.existsSync(dirGlobal)) {
+			fs.mkdirSync(dirGlobal);
+		}
+		fs.readdir(dirGlobal, function (err, files) {
+			if (err) {
+				onerror(err);
+				return;
+			}
+			else if (files.length == 0)
+				console.log('No existen archivos.');
+			else
+				console.log(files);
+		});
+		const form = new formidable.IncomingForm();
+		form.uploadDir = logUserName;
+		form.parse(req);
+		// 'fileBegin' SE INVOCA CUANDO UN ARCHIVO COMIENZA A SUBIRSE.
+		form.on('fileBegin', (field, file) => {
+			console.log("Subiendo archivo...");
+			let ts = Date.now();
+			let date_ob = new Date(ts);
+			let date = date_ob.getDate();
+			let month = date_ob.getMonth() + 1;
+			let year = date_ob.getFullYear();
+			let finalDate = date + "-" + month + "-" + year + "_" + ts + "-";
+			filename = finalDate + file.name;
+			console.log("Nombre del archivo: ", filename);
+			file.path = dirGlobal + "/" + filename;
+		});
+		// 'file' SE INVOCA CUANDO EL ARCHIVO SE HA GUARDADO POR COMPLETO
+		form.on('file', (field, file) => {
+			console.log("Archivos guardado!");
+		})
+		form.on('end', function () {
+			res.status(200).redirect('/save')
+		});
+	});
+}
 
 const getListFiles = (req, res) => {
-	const directoryPath = path.join(__dirname, "..", "uploads");
 
-	fs.readdir(directoryPath, function (err, files) {
+	fs.readdir(dirGlobal, function (err, files) {
 		if (err) {
 			res.status(500).send({
 				message: "Error, no se han podido escanear tus archivos.",
@@ -48,9 +94,8 @@ const download = (req, res) => {
 	const downloadFile = req.body.downloadFile;
 	console.log("Variable downloadFile: ", downloadFile);
 	const fileName = req.params.name;
-	const directoryPath = path.join(__dirname, "..", "uploads", fileName);
 
-	res.download(directoryPath, fileName, (err) => {
+	res.download(dirGlobal, fileName, (err) => {
 		if (err) {
 			res.status(500).send({
 				message: "Error al descargar el archivo. " + err,
@@ -110,179 +155,180 @@ function showFiles(files, fileInfos) {
 */
 
 
-	// Crea un elemento <table> y un elemento <tbody>
-	// var tabla = document.createElement("table");
-	// var tblBody = document.createElement("tbody");
-	// var img = document.createElement("img");
+// Crea un elemento <table> y un elemento <tbody>
+// var tabla = document.createElement("table");
+// var tblBody = document.createElement("tbody");
+// var img = document.createElement("img");
 
-	// // Crea las celdas
-	// for (var i = 0; i < 2; i++) {
-	// 	// Crea las hileras de la tabla
-	// 	var hilera = document.createElement("tr");
+// // Crea las celdas
+// for (var i = 0; i < 2; i++) {
+// 	// Crea las hileras de la tabla
+// 	var hilera = document.createElement("tr");
 
-	// 	for (var j = 0; j < 2; j++) {
-	// 		// Crea un elemento <td> y un nodo de texto, haz que el nodo de
-	// 		// texto sea el contenido de <td>, ubica el elemento <td> al final
-	// 		// de la hilera de la tabla
-	// 		var celda = document.createElement("td");
-	// 		var textoCelda = document.createTextNode("celda en la hilera " + i + ", columna " + j);
-	// 		celda.appendChild(textoCelda);
-	// 		hilera.appendChild(celda);
-	// 	}
+// 	for (var j = 0; j < 2; j++) {
+// 		// Crea un elemento <td> y un nodo de texto, haz que el nodo de
+// 		// texto sea el contenido de <td>, ubica el elemento <td> al final
+// 		// de la hilera de la tabla
+// 		var celda = document.createElement("td");
+// 		var textoCelda = document.createTextNode("celda en la hilera " + i + ", columna " + j);
+// 		celda.appendChild(textoCelda);
+// 		hilera.appendChild(celda);
+// 	}
 
-	// 	// agrega la hilera al final de la tabla (al final del elemento tblbody)
-	// 	tblBody.appendChild(hilera);
-	// }
+// 	// agrega la hilera al final de la tabla (al final del elemento tblbody)
+// 	tblBody.appendChild(hilera);
+// }
 
-	// // posiciona el <tbody> debajo del elemento <table>
-	// tabla.appendChild(tblBody);
-	// appends <table> into <body>
-	// body.appendChild(tabla);
-	// modifica el atributo "border" de la tabla y lo fija a "2";
-	// tabla.setAttribute("border", "2");
-
-
+// // posiciona el <tbody> debajo del elemento <table>
+// tabla.appendChild(tblBody);
+// appends <table> into <body>
+// body.appendChild(tabla);
+// modifica el atributo "border" de la tabla y lo fija a "2";
+// tabla.setAttribute("border", "2");
 
 
-	/*
-	for (let i in fileJson) {
-		for (let j in fileJson[i]) {
-			console.log("JSON: ", fileJson[i][j]);
-		}
+
+
+/*
+for (let i in fileJson) {
+	for (let j in fileJson[i]) {
+		console.log("JSON: ", fileJson[i][j]);
 	}
-	*/
+}
+*/
 
-	/*
-	const pagina =
-		`<!DOCTYPE html>
-			<html lang="en">
-			
-			<head>
-			<meta charset="UTF-8">
-			<link rel="shortcut icon" href="#">
-			<link rel="icon" type="image/png" href="img/Logo_Mysky_Javi.png" />
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-			<!--<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">-->
-			<link rel="stylesheet" href="/css/style.css">
-			<!--link rel="stylesheet" href="/css/style2.css">-->
-			<!--<script type="text/javascript" src="login/signup.js"></script>-->
-			<link rel="preconnect" href="https://fonts.gstatic.com">
-			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-				integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-				integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-				<nav>
-					<div class="imageheader">
-						<a href="/profile" title="Perfil">
-							<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
-						</a>
-					</div>
-					<form action="/logout" method="GET">
-						<div class="logout">
-							<div style="text-align:center;">
-								<!-- <input type="submit" value="Cerrar sesion" class="button"> -->
-								<p id="prueba1"></p>
-							</div>
+/*
+const pagina =
+	`<!DOCTYPE html>
+		<html lang="en">
+		
+		<head>
+		<meta charset="UTF-8">
+		<link rel="shortcut icon" href="#">
+		<link rel="icon" type="image/png" href="img/Logo_Mysky_Javi.png" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!--<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">-->
+		<link rel="stylesheet" href="/css/style.css">
+		<!--link rel="stylesheet" href="/css/style2.css">-->
+		<!--<script type="text/javascript" src="login/signup.js"></script>-->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+			<nav>
+				<div class="imageheader">
+					<a href="/profile" title="Perfil">
+						<img src="/img/Logo_Mysky_Javi.png" alt="Perfil" width="120" height="80">
+					</a>
+				</div>
+				<form action="/logout" method="GET">
+					<div class="logout">
+						<div style="text-align:center;">
+							<!-- <input type="submit" value="Cerrar sesion" class="button"> -->
+							<p id="prueba1"></p>
 						</div>
-					</form>
-					<div class="texto">Mis archivos</div>
-					<title>Mis archivos</title>
-					<!-- <script type="text/javascript" src="/js/showFiles.js"></script> -->
-				</nav>
-			</head>
-			
-			<body class="profile">
-			
-				<div class="volver">
-					<div style="text-align:center;">
-						<table class="files">
-							<tr>
-								<img src="/img/photo.png">
-								<!-- <th>${fileJson}</th> -->
-							</tr>
-							<tr>
-								<th>Firstname</th>
-								<th>Lastname</th>
-								<th>Savings</th>
-							</tr>
-								<tr>
-								<td>Peter</td>
-								<td>Griffin</td>
-								<td>$100</td>
-							</tr>
-								<tr>
-								<td>Lois</td>
-								<td>Griffin</td>
-								<td>$150</td>
-							</tr>
-								<tr>
-								<td>Joe</td>
-								<td>Swanson</td>
-								<td>$300</td>
-							</tr>
-							 <tr>
-								<td>Cleveland</td>
-								<td>Brown</td>
-								<td>$250</td>
-							</tr>
-							<!-- <input type="file" name="downloadFile"/> -->
-
-						</table>
 					</div>
+				</form>
+				<div class="texto">Mis archivos</div>
+				<title>Mis archivos</title>
+				<!-- <script type="text/javascript" src="/js/showFiles.js"></script> -->
+			</nav>
+		</head>
+		
+		<body class="profile">
+		
+			<div class="volver">
+				<div style="text-align:center;">
+					<table class="files">
+						<tr>
+							<img src="/img/photo.png">
+							<!-- <th>${fileJson}</th> -->
+						</tr>
+						<tr>
+							<th>Firstname</th>
+							<th>Lastname</th>
+							<th>Savings</th>
+						</tr>
+							<tr>
+							<td>Peter</td>
+							<td>Griffin</td>
+							<td>$100</td>
+						</tr>
+							<tr>
+							<td>Lois</td>
+							<td>Griffin</td>
+							<td>$150</td>
+						</tr>
+							<tr>
+							<td>Joe</td>
+							<td>Swanson</td>
+							<td>$300</td>
+						</tr>
+						 <tr>
+							<td>Cleveland</td>
+							<td>Brown</td>
+							<td>$250</td>
+						</tr>
+						<!-- <input type="file" name="downloadFile"/> -->
+
+					</table>
 				</div>
-			
-				<div class="volver">
-					<div style="text-align:center;">
-						<a href="/profile" class="button">Volver</a>
-					</div>
+			</div>
+		
+			<div class="volver">
+				<div style="text-align:center;">
+					<a href="/profile" class="button">Volver</a>
 				</div>
-				<footer>
-					<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
-				</footer>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
-				<script type="text/javascript" src="/js/showFiles.js"></script>
-			</body>
-			
-			</html>`;
-	return pagina;
-	*/
+			</div>
+			<footer>
+				<p>Copyright &copy;2021 | Propiedad de <a href="https://github.com/JvRdgz">Javier Rodriguez Montero</a></p>
+			</footer>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+			<script type="text/javascript" src="/js/showFiles.js"></script>
+		</body>
+		
+		</html>`;
+return pagina;
+*/
 
 
 
-	/*
-	for (var i = 0; i < fileJson.length; i++) {
-		console.log("EN LA FUNCION filesTable");
-		const myArticle = document.createElement('tr');
-		const myH2 = document.createElement('h2');
-		const myPara1 = document.createElement('p');
-		const myPara2 = document.createElement('p');
-		const myPara3 = document.createElement('p');
-		const myList = document.createElement('ul');
+/*
+for (var i = 0; i < fileJson.length; i++) {
+	console.log("EN LA FUNCION filesTable");
+	const myArticle = document.createElement('tr');
+	const myH2 = document.createElement('h2');
+	const myPara1 = document.createElement('p');
+	const myPara2 = document.createElement('p');
+	const myPara3 = document.createElement('p');
+	const myList = document.createElement('ul');
 
-		myH2.textContent = heroes[i].name;
-		myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
-		myPara2.textContent = 'Age: ' + heroes[i].age;
-		myPara3.textContent = 'Superpowers:';
+	myH2.textContent = heroes[i].name;
+	myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+	myPara2.textContent = 'Age: ' + heroes[i].age;
+	myPara3.textContent = 'Superpowers:';
 
-		const superPowers = heroes[i].powers;
-		for (var j = 0; j < superPowers.length; j++) {
-			const listItem = document.createElement('li');
-			listItem.textContent = superPowers[j];
-			myList.appendChild(listItem);
-		}
-
-		myArticle.appendChild(myH2);
-		myArticle.appendChild(myPara1);
-		myArticle.appendChild(myPara2);
-		myArticle.appendChild(myPara3);
-		myArticle.appendChild(myList);
-
-		section.appendChild(myArticle);
+	const superPowers = heroes[i].powers;
+	for (var j = 0; j < superPowers.length; j++) {
+		const listItem = document.createElement('li');
+		listItem.textContent = superPowers[j];
+		myList.appendChild(listItem);
 	}
+
+	myArticle.appendChild(myH2);
+	myArticle.appendChild(myPara1);
+	myArticle.appendChild(myPara2);
+	myArticle.appendChild(myPara3);
+	myArticle.appendChild(myList);
+
+	section.appendChild(myArticle);
+}
 }
 */
 module.exports = {
 	getListFiles,
 	download,
+	uploadFiles,
 };

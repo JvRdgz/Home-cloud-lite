@@ -1,8 +1,6 @@
 const path = require('path');
-const fs = require("fs");
 const controllerRoute = path.join(__dirname, "..", "controllers", "file.controller");
 const controller = require(controllerRoute);
-const multer = require('multer');
 
 module.exports = (app, passport) => {
 
@@ -167,11 +165,6 @@ module.exports = (app, passport) => {
 	app.get("/save", isLoggedIn, (req, res) => {
 		res.render('save');
 	});
-
-	app.get("/error", isLoggedIn, (req, res) => {
-		res.render('error');
-	});
-
 };
 
 function isLoggedIn(req, res, next) {

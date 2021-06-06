@@ -60,7 +60,7 @@ COPY	./app ./
 # sistema operativo, coja por defecto el puerto 3000, pero en este caso el
 # contenedor escucha por el puerto 8080, por lo tanto para probar el servidor
 # en local, se debera de ingresar a localhost:8080
-EXPOSE 4000
+EXPOSE 3000
 
 # Ejecutar el comando para levantarla en local.
 # CMD bash init_services.sh

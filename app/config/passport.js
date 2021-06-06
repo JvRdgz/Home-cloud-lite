@@ -2,15 +2,15 @@
 const path = require('path');
 // fs nos permitira listar y obtener todos los archivos guardados en una carpeta.
 const fs = require('fs');
-// const mkdirp = require('mkdirp');
 // Registro de usuario Local
 const LocalStrategy = require('passport-local').Strategy;
-// const databaseRoute = path.join(__dirname, "database.js");
-
-// require(databaseRoute);
 
 const userRoute = path.join(__dirname, "..", "models", "user.js");
 const User = require(userRoute);
+
+// VARIABLES GLOBALES PARA RECUPERACION DE DATOS.
+global.dirGlobal = "";
+global.logUserName = "";
 
 module.exports = function (passport) {
 
@@ -24,7 +24,7 @@ module.exports = function (passport) {
 		});
 	});
 
-	// signup
+	// SIGN UP
 	passport.use('local-signup', new LocalStrategy({
 		usernameField: 'email',
 		passwordField: 'password',
@@ -41,11 +41,7 @@ module.exports = function (passport) {
 
 					// Creo la carpeta del usuario.
 					userName(email);
-					// const initusername = newUser.local.email;
-					// let indice = initusername.indexOf("@");
-					// const finalusername = initusername.substring(0, indice);
-					// const dir = path.join(__dirname, "..", finalusername);
-					// mkdirp(dir);
+
 					newUser.local.password = newUser.generateHash(password);
 					newUser.save(function (err) {
 						if (err) { throw err; }
@@ -55,7 +51,7 @@ module.exports = function (passport) {
 			})
 		}));
 
-	// login
+	// LOGIN
 	passport.use('local-login', new LocalStrategy({
 		usernameField: 'email',
 		passwordField: 'password',
@@ -71,9 +67,9 @@ module.exports = function (passport) {
 				}
 				const userTransform = email.split('@');
 				const username = userTransform[0];
+				logUserName = username;
 				const dir = path.join(__dirname, "..", username);
-				global.dirGlobal = dir;
-				console.log("FFFF: ", dirGlobal);
+				dirGlobal = dir;
 				console.log("Usuario loggeado: ", username);
 				console.log("")
 				return done(null, user);
@@ -81,13 +77,16 @@ module.exports = function (passport) {
 		}));
 }
 
+// FUNCION PARA CREAR EL DIRECTORIO CON EL NOMBRE DEL USUARIO EN CASO DE QUE NO EXISTA.
 function userName(email) {
 	const userTransform = email.split('@');
 	const username = userTransform[0];
 
 	console.log("Nuevo usuario registrado: ", username);
+	logUserName = username;
 	const dir = path.join(__dirname, "..", username);
-	console.log("Directorio: ", dir);
+	console.log("Directorio creado: ", dir);
+	dirGlobal = dir;
 
 	if (!fs.existsSync(dir)) {
 		fs.mkdirSync(dir);
