@@ -44,8 +44,8 @@
 		"passport-local": "^1.0.0",
 		"path": "^0.12.7",
 		"pm2": "^4.5.6",
-		"require-optional": "^0.4.0",
-		"require_optional": "^1.0.1"
+		"require_optional": "^1.0.1",
+		"require-optional": "^0.4.0"
 	},
 	"devDependencies": {
 		"dotenv": "^9.0.2",

@@ -1,12 +1,9 @@
 const path = require('path');
 const controllerRoute = path.join(__dirname, "..", "controllers", "file.controller");
 const controller = require(controllerRoute);
-const fs = require("fs");
 
-global.fileInfos = [];
 module.exports = (app, passport) => {
 
-	// const indexRoute = path.join(__dirname, "views", "index.ejs");
 	app.get("/", (req, res) => {
 
 		res.render('index');
@@ -41,7 +38,6 @@ module.exports = (app, passport) => {
 	}));
 
 	app.get('/profile', isLoggedIn, (req, res) => {
-		console.log("Ficheros: ", controller.getFiles);
 		res.render('profile', {
 			user: logUserName
 		});
@@ -51,104 +47,15 @@ module.exports = (app, passport) => {
 		res.render('info');
 	});
 
-	/*
-	app.get("/files", (req, res) => {
-		const directoryPath = path.join(__dirname, "..", "uploads");
-		const baseUrl = "http://localhost:3000/files/";
-		fs.readdir(directoryPath, function (err, files) {
-			if (err) {
-				res.status(500).send({
-					message: "Error, no se han podido escanear tus archivos.",
-				});
-			}
-
-			let fileInfos = [];
-			var id = 0;
-			// const userTransform = email.split('@');
-			// const userName = userTransform[0];
-			// console.log("nombre: ", files[0]);
-			files.forEach((file) => {
-				fileInfos.push({
-					id: id,
-					name: file,
-					url: baseUrl + file,
-				});
-				id++;
-			});
-			// console.log("Primera posicion del array: ", fileInfos[0]);
-			// res.downloadFile(fileInfos[0]);
-			// const fileJson = JSON.stringify(fileInfos);
-			// const filesTable = showFiles(fileJson);
-			// showFiles(fileInfos);
-			const fileJson = JSON.stringify(fileInfos);
-			// const pagina = showFiles(files, fileInfos);
-			// console.log("PROBANDO: ", fileInfos);
-			// console.log("Objeto transformado a JSON: ", fileJson);
-			// res.end(pagina);
-			// res.status(200).send(fileJson);
-			res.status(200).render("files");
-			// res.end(fileJson);
-			// res.status(200).send(fileInfos);
-		});
-	});
-	*/
-
-	// controller.getListFiles,
-
 	app.get("/files", isLoggedIn, (req, res) => {
-		// var fileInfos = [];
-		const baseUrl = "http://localhost:3000/files/";
-		fs.readdir(dirGlobal, function (err, files) {
-			if (err) {
-				res.status(500).send({
-					message: "Error, no se han podido escanear tus archivos.",
-				});
-			}
-			console.log("Primera posicion del array: ", files);
-
-			var id = 0;
-			// const userTransform = email.split('@');
-			// const userName = userTransform[0];
-			// console.log("nombre: ", files[0]);
-			files.forEach((file) => {
-				fileInfos.push({
-					id: id,
-					name: file,
-					url: baseUrl + file,
-				});
-				id++;
-			});
-			// res.downloadFile(fileInfos[0]);
-			// const fileJson = JSON.stringify(fileInfos);
-			// const filesTable = showFiles(fileJson);
-			// showFiles(fileInfos);
-			// const fileJson = JSON.stringify(fileInfos);
-			// res.json(fileJson);
-			// const pagina = showFiles(files, fileInfos);
-			console.log("PROBANDO: ", fileInfos[0]);
-			// console.log("Objeto transformado a JSON: ", fileJson);
-			// res.end(pagina);
-			// res.status(200).send(fileJson);
-			// res.status(200).render("files");
-			// res.end(fileJson);
-			// res.status(200).send(fileInfos);
-		});
-
-		var mascots = [
-			{ name: 'Sammy', organization: "DigitalOcean", birth_year: 2012 },
-			{ name: 'Tux', organization: "Linux", birth_year: 1996 },
-			{ name: 'Moby Dock', organization: "Docker", birth_year: 2013 }
-		];
-		var tagline = "No programming concept is complete without a cute animal mascot.";
+		controller.getListFiles();
 
 		res.render('files', {
-			fileInfos: fileInfos,
-			mascots: mascots,
-			tagline: tagline
+			images: arrayImages,
+			videos: arrayVideos,
+			music: arrayMusic,
+			ficheros: arrayFiles,
 		});
-		// res.render('files', {
-		// 	fileInfos: 'fileInfos'
-		// });
 	});
 
 	app.get("/files/:name", isLoggedIn, controller.download);
@@ -158,67 +65,9 @@ module.exports = (app, passport) => {
 		res.redirect('/');
 	});
 
-	/*
-	app.get('/login', (req, res) => {
-		if (res.status(404))
-			res.redirect('/404');
-		else {
-			res.render('login', {
-				message: req.flash('loginMessage')
-			});
-		}
-	});
-	*/
-
 	app.get("/upload", isLoggedIn, (req, res) => {
 		res.render('upload');
 	});
-
-	/*
-	function subir () {
-		console.log("VARIABLE: ", dirGlobal);
-		const dir = path.join(__dirname, "..", "uploads");
-
-		if (!fs.existsSync(dir)) {
-			fs.mkdirSync(dir);
-		}
-		fs.readdir(dir, function (err, files) {
-			if (err) {
-				onerror(err);
-				return;
-			}
-			else if (files.length == 0)
-				console.log('No existen archivos.');
-			else
-				console.log(files);
-		});
-
-		// req: informacion de la peticion
-		// file: archivo que se esta subiendo
-		// cb: aquello que se va a llamar cuando esta funcion termine.
-
-		const storage = multer.diskStorage({
-			destination: dirGlobal,
-			filename: function (req, file, cb) {
-				let ts = Date.now();
-
-				let date_ob = new Date(ts);
-				let date = date_ob.getDate();
-				let month = date_ob.getMonth() + 1;
-				let year = date_ob.getFullYear();
-				let finalDate = date + "-" + month + "-" + year + "_" + ts + "-";
-				cb(null, finalDate + file.originalname);
-			}
-		});
-
-		const upload = multer({ storage: storage });
-		app.post("/upload", isLoggedIn, upload.array('avatar'), (req, res, next) => { res.redirect('/save') });
-	}
-	*/
-
-
-	// en el upload.single('...'), ahi dentro tiene que coincidir con el nombre
-	// del formulario donde se indica el name=""
 
 	app.get("/save", isLoggedIn, (req, res) => {
 		res.render('save');
@@ -230,11 +79,3 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) { return next(); }
 	return res.redirect('/');
 };
-/*
-function errorCase(req, res, next) {
-	if (res.status(404))
-		res.redirect('/404');
-	else
-		return next();
-};
-*/

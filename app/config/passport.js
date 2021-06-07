@@ -65,6 +65,7 @@ module.exports = function (passport) {
 				} if (!user.validatePassword(password)) {
 					return done(null, false, req.flash('loginMessage', 'La contraseña no es correcta'));
 				}
+				userName(email);
 				const userTransform = email.split('@');
 				const username = userTransform[0];
 				logUserName = username;
