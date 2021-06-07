@@ -3,6 +3,7 @@ const controllerRoute = path.join(__dirname, "..", "controllers", "file.controll
 const controller = require(controllerRoute);
 const fs = require("fs");
 
+global.fileInfos = [];
 module.exports = (app, passport) => {
 
 	// const indexRoute = path.join(__dirname, "views", "index.ejs");
@@ -95,8 +96,7 @@ module.exports = (app, passport) => {
 	// controller.getListFiles,
 
 	app.get("/files", isLoggedIn, (req, res) => {
-		/*
-		var fileInfos = [];
+		// var fileInfos = [];
 		const baseUrl = "http://localhost:3000/files/";
 		fs.readdir(dirGlobal, function (err, files) {
 			if (err) {
@@ -104,6 +104,7 @@ module.exports = (app, passport) => {
 					message: "Error, no se han podido escanear tus archivos.",
 				});
 			}
+			console.log("Primera posicion del array: ", files);
 
 			var id = 0;
 			// const userTransform = email.split('@');
@@ -117,7 +118,6 @@ module.exports = (app, passport) => {
 				});
 				id++;
 			});
-			// console.log("Primera posicion del array: ", fileInfos[0]);
 			// res.downloadFile(fileInfos[0]);
 			// const fileJson = JSON.stringify(fileInfos);
 			// const filesTable = showFiles(fileJson);
@@ -125,7 +125,7 @@ module.exports = (app, passport) => {
 			// const fileJson = JSON.stringify(fileInfos);
 			// res.json(fileJson);
 			// const pagina = showFiles(files, fileInfos);
-			// console.log("PROBANDO: ", fileInfos);
+			console.log("PROBANDO: ", fileInfos[0]);
 			// console.log("Objeto transformado a JSON: ", fileJson);
 			// res.end(pagina);
 			// res.status(200).send(fileJson);
@@ -133,16 +133,6 @@ module.exports = (app, passport) => {
 			// res.end(fileJson);
 			// res.status(200).send(fileInfos);
 		});
-		*/
-
-		/*
-		var mascots = [
-			{ name: 'Sammy', organization: "DigitalOcean", birth_year: 2012 },
-			{ name: 'Tux', organization: "Linux", birth_year: 1996 },
-			{ name: 'Moby Dock', organization: "Docker", birth_year: 2013 }
-		];
-		var tagline = "No programming concept is complete without a cute animal mascot.";
-		*/
 
 		var mascots = [
 			{ name: 'Sammy', organization: "DigitalOcean", birth_year: 2012 },
@@ -152,6 +142,7 @@ module.exports = (app, passport) => {
 		var tagline = "No programming concept is complete without a cute animal mascot.";
 
 		res.render('files', {
+			fileInfos: fileInfos,
 			mascots: mascots,
 			tagline: tagline
 		});

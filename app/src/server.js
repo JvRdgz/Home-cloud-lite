@@ -25,6 +25,7 @@ const morgan = require('morgan');
 // Modulo para poder administrar cookies
 const cookieParser = require('cookie-parser');
 
+// Gestion de cookies
 const session = require('express-session');
 
 /**

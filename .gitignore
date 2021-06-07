@@ -1,5 +1,4 @@
 app/node_modules
 app/package-lock.json
 doc/TODO.txt
-app/uploads/*
 app/.env
